@@ -5,6 +5,7 @@ from django_jalali.db import models as jmodels
 from extenstion.utils import get_file_path
 from master.models import Master
 
+
 # Create your models here.
 
 class Course(models.Model):
@@ -20,7 +21,8 @@ class Course(models.Model):
     logo = models.ImageField(
         upload_to=get_file_path,
     )
-    description = RichTextField()
+    # description = RichTextField()
+    description = models.TextField()
     start_time = jmodels.jDateField()
     finish_time = jmodels.jDateField()
     master = models.ForeignKey(
