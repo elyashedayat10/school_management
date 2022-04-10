@@ -1,24 +1,18 @@
-import os
-import uuid
-
-from ckeditor.fields import RichTextField
+from django.core.validators import ValidationError
 from django.db import models
-from django_jalali.db import models as jmodels
+from django.urls import reverse
+from extenstion.utils import get_file_path
 
 
-def get_file_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (uuid.uuid4(), ext)
-    return os.path.join('uploads/' + instance.model, filename)
-
-
-class TimeStamp(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+def validate_national_code(value):
+    if value.isnumeric() in value | len(value) == 10:
+        return value
+    else:
+        raise ValidationError("This field accepts int only and character must be 10")
 
 
 # Create your models here.
-class Master(TimeStamp):
+class Master(models.Model):
     first_name = models.CharField(
         max_length=125,
     )
@@ -27,10 +21,17 @@ class Master(TimeStamp):
     )
     national_code = models.CharField(
         max_length=125,
+        validators=[validate_national_code]
     )
     profile_image = models.ImageField(
         upload_to=get_file_path,
         blank=True,
+    )
+    created = models.DateTimeField(
+        auto_now_add=True
+    )
+    updated = models.DateTimeField(
+        auto_now=True
     )
 
     class Meta:
@@ -40,47 +41,8 @@ class Master(TimeStamp):
         return f'{self.first_name}-{self.last_name}'
 
     def get_absolute_url(self):
-        pass
+        return reverse('Master:master_detail', args=[self.id])
 
     def master_course_count(self):
         course_count = self.courses.count()
         return course_count
-
-
-class Course(TimeStamp):
-    STATUS = (
-        ("START", "شروع نشده"),
-        ("HOLD", "در حال برگزاری"),
-        ("FINISHED", "اتمام یافته"),
-    )
-    objects = jmodels.jManager()
-    title = models.CharField(
-        max_length=125,
-    )
-    logo = models.ImageField(
-        upload_to=get_file_path,
-    )
-    description = RichTextField()
-    start_time = jmodels.jDateField()
-    finish_time = jmodels.jDateField()
-    master = models.ForeignKey(
-        Master,
-        on_delete=models.CASCADE,
-        related_name='courses',
-    )
-    fee = models.PositiveIntegerField()
-    status = models.CharField(
-        max_length=15,
-        choices=STATUS,
-    )
-
-    # participation=models.ManyToManyField()
-
-    class Meta:
-        pass
-
-    def __str__(self):
-        return f'{self.master.last_name}-{self.title}'
-
-    def get_absolute_url(self):
-        pass

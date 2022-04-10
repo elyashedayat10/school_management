@@ -27,10 +27,11 @@ INSTALLED_APPS = [
     # third
     'ckeditor',
     'django_jalali',
-    'django_cleanup.apps.CleanupConfig'
+    'django_cleanup',
 
     # local
     'master.apps.MasterConfig',
+    'course.apps.CourseConfig',
 ]
 
 MIDDLEWARE = [
@@ -105,14 +106,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "assets",
+]
 
-STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "static_cdn" / "static"
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR / "static_cdn" / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CKEDITOR_BASEPATH = "/my_static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 CKEDITOR_CONFIGS = {
     'awesome_ckeditor': {
         'toolbar': 'Basic',
