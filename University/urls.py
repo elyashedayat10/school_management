@@ -6,7 +6,8 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('Master/', include("master.urls", namespace="Master"))
+    path('master/', include("master.urls", namespace="Master")),
+    path('course/', include("course.urls", namespace="Course")),
 ]
 if settings.DEBUG:
     # ADD ROOT MEDIA FILES
