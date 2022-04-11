@@ -17,35 +17,50 @@ class Course(models.Model):
     objects = jmodels.jManager()
     title = models.CharField(
         max_length=125,
+        verbose_name='عنوان دوره',
     )
     logo = models.ImageField(
         upload_to=get_file_path,
+        verbose_name='لوگوی دوره',
     )
     # description = RichTextField()
-    description = models.TextField()
-    start_time = jmodels.jDateField()
-    finish_time = jmodels.jDateField()
+    description = models.TextField(
+        verbose_name='توضیحات دوره',
+    )
+    start_time = jmodels.jDateField(
+        verbose_name='تاریخ شروع',
+    )
+    finish_time = jmodels.jDateField(
+        verbose_name='تاریخ اتمام',
+    )
     master = models.ForeignKey(
         Master,
         on_delete=models.CASCADE,
         related_name='courses',
+        verbose_name='استاد',
     )
-    fee = models.PositiveIntegerField()
+    fee = models.PositiveIntegerField(
+        verbose_name='شهریه',
+    )
     status = models.CharField(
         max_length=15,
         choices=STATUS,
+        verbose_name='وضعیت دوره',
     )
     created = models.DateTimeField(
-        auto_now_add=True
+        auto_now_add=True,
+        verbose_name='تاریخ ایجاد دوره',
     )
     updated = models.DateTimeField(
-        auto_now=True
+        auto_now=True,
+        verbose_name='تاریخ آپدیت دوره',
     )
 
     # participation=models.ManyToManyField()
 
     class Meta:
-        pass
+        verbose_name = 'دوره'
+        verbose_name_plural = 'دوره ها'
 
     def __str__(self):
         return f'{self.master.last_name}-{self.title}'

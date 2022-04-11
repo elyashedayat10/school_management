@@ -15,27 +15,35 @@ def validate_national_code(value):
 class Master(models.Model):
     first_name = models.CharField(
         max_length=125,
+        verbose_name='نام',
     )
     last_name = models.CharField(
         max_length=125,
+
+        verbose_name='نام خانوادگی',
     )
     national_code = models.CharField(
         max_length=125,
-        validators=[validate_national_code]
+        validators=[validate_national_code],
+        verbose_name='کد ملی',
     )
     profile_image = models.ImageField(
         upload_to=get_file_path,
         blank=True,
+        verbose_name='تصویر پزوفایل',
     )
     created = models.DateTimeField(
-        auto_now_add=True
+        auto_now_add=True,
+        verbose_name='تاریخ ایجاد',
     )
     updated = models.DateTimeField(
-        auto_now=True
+        auto_now=True,
+        verbose_name='تاریخ به روز رسانی',
     )
 
     class Meta:
-        pass
+        verbose_name = 'استاد'
+        verbose_name_plural = 'اساتید'
 
     def __str__(self):
         return f'{self.first_name}-{self.last_name}'
