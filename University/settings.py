@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'master.apps.MasterConfig',
     'course.apps.CourseConfig',
     'config.apps.ConfigConfig',
+    'account.apps.AccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,4 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 #         'toolbar': 'full',
 #     },
 # }
+AUTH_USER_MODEL = 'account.User'

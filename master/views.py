@@ -1,16 +1,12 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse_lazy, reverse
-from django.views.generic import (
-    CreateView,
-    DetailView,
-    ListView,
-    UpdateView,
-    View,
-)
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
+
 from extenstion.mixins import AdminUserMixin
+
 from .forms import MasterForm
 from .models import Master
-
 
 # Create your views here.
 

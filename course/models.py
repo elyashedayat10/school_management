@@ -5,7 +5,6 @@ from django_jalali.db import models as jmodels
 from extenstion.utils import get_file_path
 from master.models import Master
 
-
 # Create your models here.
 
 class Course(models.Model):

@@ -1,10 +1,12 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView, CreateView, UpdateView, View, DetailView
-from .models import Course
-from extenstion.mixins import AdminUserMixin
-from django.urls import reverse_lazy, reverse
-from .forms import CourseForm
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
 
+from extenstion.mixins import AdminUserMixin
+
+from .forms import CourseForm
+from .models import Course
 
 # Create your views here.
 
