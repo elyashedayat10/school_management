@@ -8,6 +8,7 @@ urlpatterns = [
     path('master/', include("master.urls", namespace="Master")),
     path('course/', include("course.urls", namespace="Course")),
     path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('', include('config.urls', namespace='config')),
 
 ]
 if settings.DEBUG:

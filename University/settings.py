@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     # local
     'master.apps.MasterConfig',
     'course.apps.CourseConfig',
+    'config.apps.ConfigConfig',
 ]
 
 MIDDLEWARE = [

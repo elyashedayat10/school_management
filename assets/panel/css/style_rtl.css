@@ -6,8 +6,8 @@ File: rtl scss
 
 @font-face {
   font-family: "iransans";
-  src: url("../../assets/fonts/IRANSansWeb_Light.woff2") format("woff2");
-  src: url("../../assets/fonts/IRANSansWeb_Light.woff") format("woff");
+  src: url("../fonts/IRANSansWeb_Light.woff2") format("woff2");
+  src: url("../fonts/IRANSansWeb_Light.woff") format("woff");
 }
 
 /*Social Media Colors*/

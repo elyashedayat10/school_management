@@ -1,174 +1,425 @@
 
+{#<!-- Left side column. contains the logo and sidebar -->#}
+<aside class="main-sidebar">
+{#    <!-- sidebar-->#}
+    <section class="sidebar" style="overflow: scroll !important;">
 
-		<header class="main-header">
-			<!-- Header Navbar -->
-			<nav class="navbar navbar-static-top pl-30">
-				<!-- Sidebar toggle button-->
-				<div>
-					<ul class="nav">
-						<li class="btn-group nav-item">
-							<a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon"
-								data-toggle="push-menu" role="button">
-								<i class="nav-link-icon mdi mdi-menu"></i>
-							</a>
-						</li>
-						<li class="btn-group nav-item">
-							<a href="#" data-provide="fullscreen"
-								class="waves-effect waves-light nav-link rounded svg-bt-icon" title="تمام صفحه">
-								<i class="nav-link-icon mdi mdi-crop-free"></i>
-							</a>
-						</li>
+        <div class="user-profile">
+            <div class="ulogo">
+                <a href="index.html">
+                    <!-- logo for regular state and mobile devices -->
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="../images/logo-dark.png" alt="">
+                        <h3><b>KOOP</b> DEPOT</h3>
+                    </div>
+{#                </a>#}
+            </div>
+        </div>
 
-					</ul>
-				</div>
+{#        <!-- sidebar menu-->#}
+        <ul class="sidebar-menu" data-widget="tree">
 
-				<div class="navbar-custom-menu r-side">
-					<ul class="nav navbar-nav">
-						<!-- full Screen -->
-						<li class="search-bar">
-							<div class="lookup lookup-circle lookup-right">
-								<input type="text" name="s">
-							</div>
-						</li>
+            <li>
+{#                <a href="{% url "config:panel_home" %}">#}
+                    <i data-feather="pie-chart"></i>
+                    <span>داشبورد</span>
+                </a>
+            </li>
 
-
-				</div>
-			</nav>
-		</header>
-
-		<!-- Left side column. contains the logo and sidebar -->
-		<aside class="main-sidebar">
-			<!-- sidebar-->
-			<section class="sidebar">
-
-				<div class="user-profile">
-					<div class="ulogo">
-						<a href="index.html">
-							<!-- logo for regular state and mobile devices -->
-							<div class="d-flex align-items-center justify-content-center">
-								<img src="../images/logo-dark.png" alt="">
-								<h3><b>Sunny</b> Admin</h3>
-							</div>
-						</a>
-					</div>
-				</div>
-
-				<!-- sidebar menu-->
-				<ul class="sidebar-menu" data-widget="tree">
-
-					<li>
-						<a href="index.html">
-							<i data-feather="pie-chart"></i>
-							<span>داشبورد</span>
-						</a>
-					</li>
-
-					<li class="treeview">
-						<a href="#">
-							<i data-feather="message-circle"></i>
-							<span>انبار</span>
-							<span class="pull-right-container">
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
+                    <span>انبار</span>
+                    <span class="pull-right-container">
 								<i class="fa fa-angle-right pull-right"></i>
 							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="mojodi.html"><i class="ti-more"></i>انبار قله های داخلی</a></li>
-							<li><a href="mojodi-kh.html"><i class="ti-more"></i>انبار قله های خارجی</a></li>
-						</ul>
-					</li>
-                                        <li class="treeview">
-						<a href="#">
-							<i data-feather="server"></i>
-							<span>معادن</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-right pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="madan.html"><i class="ti-more"></i>سلماس</a></li>
-							<li><a href="madan.html"><i class="ti-more"></i>مهاباد</a></li>
-                                                        <li><a href="madan"><i class="ti-more"></i>تکاب</a></li>
-                                                        <li><a href="madan.html"><i class="ti-more"></i>آتشکوه</a></li>
-                                                        <li><a href="tables_data.html"><i class="ti-more"></i>افزودن</a></li>
-						</ul>
-					</li>
+                </a>
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="{% url "product:exportal_list_panel" %}"><i class="ti-more"></i>انبار قله های#}
+{#                        صادرانی</a></li>#}
+{#                    <li><a href="{% url "product:internal_list_panel" %}"><i class="ti-more"></i>انبار قله های داخلی</a>#}
+{#                    </li>#}
+{#                    <li><a href="{% url "product:exportal_product_create" %}"><i class="ti-more"></i>به رزرسانی - افزودن#}
+{#                        قله صادراتی</a></li>#}
+{#                    <li><a href="{% url "product:exportal_product_create" %}"><i class="ti-more"></i>به روزرسانی-افزودن#}
+{#                        قله داخلی</a></li>#}
+{#                    <li><a href="{% url "product:lined_product" %}"><i class="ti-more"></i>به روز زسانی - لاین شده در#}
+{#                        معدن</a></li>#}
+{#                    <li><a href="{% url "product:loaded_product" %}"><i class="ti-more"></i> به روز زسانی - بارگیری</a>#}
+{#                    </li>#}
+{#                    <li><a href="{% url "product:rejected_product" %}"><i class="ti-more"></i>به روز زسانی -عودت شده</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </li>#}
+{#                       <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="layers"></i>#}
+{#                    <span>انبار</span>#}
+{#                    <span class="pull-right-container">#}
+{#              <i class="fa fa-angle-right pull-right"></i>#}
+{#            </span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                                        <li class="treeview">#}
+{#                                            <a href="#">انبار#}
+{#                                                <span class="pull-right-container">#}
+{#                                  <i class="fa fa-angle-right pull-right"></i>#}
+{#                                </span>#}
+{#                                            </a>#}
+{#                                            <ul class="treeview-menu">#}
+{#                                                <li><a href="{% url "product:exportal_list_panel" %}">انبار قله های خارحی</a></li>#}
+{#                                                <li><a href="{% url "product:internal_list_panel" %}">انبار قله های داخلی</a></li>#}
+{#                                                <li class="treeview">#}
+{#                                                    <a href="#">#}
+{#                                        <span class="pull-right-container">#}
+{#                    					  <i class="fa fa-angle-right pull-right"></i>#}
+{#                    					</span>#}
+{#                                                    </a>#}
+                                                </li>
+                                            </ul>
+                                        </li>
+{#                                        <li class="treeview">#}
+{#                                            <a href="#">به روزرسانی#}
+{#                                                <span class="pull-right-container">#}
+{#                                  <i class="fa fa-angle-right pull-right"></i>#}
+{#                                </span>#}
+{#                                            </a>#}
+{#                                            <ul class="treeview-menu">#}
+{#                                                                 <li><a href="{% url "product:exportal_product_create" %}"><i class="ti-more"></i>به رزرسانی - افزودن#}
+{#                        قله صادراتی</a></li>#}
+{#                    <li><a href="{% url "product:internal_product_create" %}"><i class="ti-more"></i>به روزرسانی-افزودن#}
+{#                        قله داخلی</a></li>#}
+{#                    <li><a href="{% url "product:lined_product_create" %}"><i class="ti-more"></i>به روز زسانی - لاین شده در#}
+{#                        معدن</a></li>#}
+{#                    <li><a href="{% url "product:loaded_product" %}"><i class="ti-more"></i> به روز زسانی - بارگیری</a>#}
+                    </li>
+{#                    <li><a href="{% url "product:rejected_update" %}"><i class="ti-more"></i>به روز زسانی -عودت شده</a>#}
+{#                                                <li class="treeview">#}
+{#                                                    <a href="#">#}
+{#                                        <span class="pull-right-container">#}
+{#                    					  <i class="fa fa-angle-right pull-right"></i>#}
+{#                    					</span>#}
+{#                                                    </a>#}
+                                                </li>
+                                            </ul>
+                                        </li>
+{#                                        <li class="treeview">#}
+{##}
+{#                                            <a href="#">بارگیری شده#}
+{#                                                <span class="pull-right-container">#}
+{#                                  <i class="fa fa-angle-right pull-right"></i>#}
+{#                                </span>#}
+{#                                            </a>#}
+{#                                            <ul class="treeview-menu">#}
+{##}
+{#                                                <li><a href="">سلماس </a></li>#}
+{#                                                <li class="treeview">#}
+{#                                                    <a href="#">#}
+{#                                        <span class="pull-right-container">#}
+{#                    					  <i class="fa fa-angle-right pull-right"></i>#}
+{#                    					</span>#}
+{#                                                    </a>#}
+{#                                                    <ul class="treeview-menu">#}
+{#                                                        <li><a href="#">سطح سه</a></li>#}
+{#                                                        <li><a href="#">سطح سه</a></li>#}
+{#                                                    </ul>#}
+{#                                                </li>#}
+{#                                            </ul>#}
+{#                                        </li>#}
+{#                                        <li class="treeview">#}
+{##}
+{#                                            <a href="#">لیست قله های صادرانی موجود#}
+{#                                                <span class="pull-right-container">#}
+{#                                  <i class="fa fa-angle-right pull-right"></i>#}
+{#                                </span>#}
+{#                                            </a>#}
+{#                                            <ul class="treeview-menu">#}
+{##}
+{#                                                <li><a href="">تکاب </a></li>#}
+{#                                                <li class="treeview">#}
+{#                                                    <a href="#">#}
+{#                                        <span class="pull-right-container">#}
+{#                    					  <i class="fa fa-angle-right pull-right"></i>#}
+{#                    					</span>#}
+{#                                                    </a>#}
+{#                                                    <ul class="treeview-menu">#}
+{#                                                        <li><a href="#">سطح سه</a></li>#}
+{#                                                        <li><a href="#">سطح سه</a></li>#}
+{#                                                    </ul>#}
+{#                                                </li>#}
+{#                                            </ul>#}
+{#                                        </li>#}
+{#                                        <li class="treeview">#}
+{#                                            <a href="#">لیست قله های داخلی موجود#}
+{#                                                <span class="pull-right-container">#}
+{#                                  <i class="fa fa-angle-right pull-right"></i>#}
+{#                                </span>#}
+{#                                            </a>#}
+{#                                            <ul class="treeview-menu">#}
+{##}
+{#                                                <li><a href="">آتشکوه </a></li>#}
+{#                                                <li class="treeview">#}
+{#                                                    <a href="#">#}
+{#                                        <span class="pull-right-container">#}
+{#                    					  <i class="fa fa-angle-right pull-right"></i>#}
+{#                    					</span>#}
+{#                                                    </a>#}
+{#                                                </li>#}
+{#                                            </ul>#}
+{##}
+{#                                        </li>#}
 
-					<li class="treeview">
-						<a href="#">
-							<i data-feather="mail"></i> <span>لیست مشتریان احتمالی</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-right pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="maby (2).html"><i class="ti-more"></i>مشتریان احتمالی</a></li>
-							<li><a href="leads.html"><i class="ti-more"></i>مشتریان راغب</a></li>
-							<li><a href="vip user.html"><i class="ti-more"></i>مشتریان vip</a></li>
-						</ul>
-					</li>
-	                                <li>
-						<a href="forms_editors.html">
-							<i data-feather="lock"></i>
-							<span>پیغامها</span>
-						</a>
-					</li>
-                                        <li>
-						<a href="buyers.html">
-							<i data-feather="lock"></i>
-							<span>خریداران</span>
-						</a>
-					</li>
+                </ul>
+            </li>
+{#            <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="mail"></i> <span>لیست مشتریان </span>#}
+{#                    <span class="pull-right-container">#}
+{#								<i class="fa fa-angle-right pull-right"></i>#}
+{#							</span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="{% url "account:possible_user" %}"><i class="ti-more"></i>مشتریان احتمالی</a></li>#}
+{#                    <li><a href="{% url "account:potential_user" %}"><i class="ti-more"></i>مشتریان بالقوه</a></li>#}
+                </ul>
+            </li>
+{#            <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="server"></i>#}
+{#                    <span>مشتریان VIP</span>#}
+{#                    <span class="pull-right-container">#}
+{#								<i class="fa fa-angle-right pull-right"></i>#}
+{#							</span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="{% url "account:special_user" %}"><i class="ti-more"></i>لیست مشتریان VIP</a></li>#}
+{#                    <li><a href="{% url "account:special_user_create" %}"><i class="ti-more"></i>افزودن مشتری VIP</a>#}
+                    </li>
+                </ul>
+            </li>
+            {#            {% category_navbar %}#}
+{#            <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="layers"></i>#}
+{#                    <span>گزارشات</span>#}
+{#                    <span class="pull-right-container">#}
+{#              <i class="fa fa-angle-right pull-right"></i>#}
+{#            </span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+                    {#                    <li class="treeview">#}
+                    {#                        <a href="#">تولید#}
+                    {#                            <span class="pull-right-container">#}
+                    {#              <i class="fa fa-angle-right pull-right"></i>#}
+                    {#            </span>#}
+                    {#                        </a>#}
+                    {#                        <ul class="treeview-menu">#}
+                    {#                            <li><a href="">تمام معادن</a></li>#}
+                    {#                            <li class="treeview">#}
+                    {#                                <a href="#">#}
+                    {#                    <span class="pull-right-container">#}
+                    {#					  <i class="fa fa-angle-right pull-right"></i>#}
+                    {#					</span>#}
+                    {#                                </a>#}
+                    {#                            </li>#}
+                    {#                        </ul>#}
+                    {#                    </li>#}
+                    {#                    <li class="treeview">#}
+                    {#                        <a href="#">موجودی#}
+                    {#                            <span class="pull-right-container">#}
+                    {#              <i class="fa fa-angle-right pull-right"></i>#}
+                    {#            </span>#}
+                    {#                        </a>#}
+                    {#                        <ul class="treeview-menu">#}
+                    {#                            <li><a href="">مهاباد</a></li>#}
+                    {#                            <li class="treeview">#}
+                    {#                                <a href="#">#}
+                    {#                    <span class="pull-right-container">#}
+                    {#					  <i class="fa fa-angle-right pull-right"></i>#}
+                    {#					</span>#}
+                    {#                                </a>#}
+                    {#                            </li>#}
+                    {#                        </ul>#}
+                    {#                    </li>#}
+                    {#                    <li class="treeview">#}
+                    {##}
+                    {#                        <a href="#">بارگیری شده#}
+                    {#                            <span class="pull-right-container">#}
+                    {#              <i class="fa fa-angle-right pull-right"></i>#}
+                    {#            </span>#}
+                    {#                        </a>#}
+                    {#                        <ul class="treeview-menu">#}
+                    {##}
+                    {#                            <li><a href="">سلماس </a></li>#}
+                    {#                            <li class="treeview">#}
+                    {#                                <a href="#">#}
+                    {#                    <span class="pull-right-container">#}
+                    {#					  <i class="fa fa-angle-right pull-right"></i>#}
+                    {#					</span>#}
+                    {#                                </a>#}
+                    {#                                <ul class="treeview-menu">#}
+                    {#                                    <li><a href="#">سطح سه</a></li>#}
+                    {#                                    <li><a href="#">سطح سه</a></li>#}
+                    {#                                </ul>#}
+                    {#                            </li>#}
+                    {#                        </ul>#}
+                    {#                    </li>#}
+                    {#                    <li class="treeview">#}
+                    {##}
+                    {#                        <a href="#">لیست قله های صادرانی موجود#}
+                    {#                            <span class="pull-right-container">#}
+                    {#              <i class="fa fa-angle-right pull-right"></i>#}
+                    {#            </span>#}
+                    {#                        </a>#}
+                    {#                        <ul class="treeview-menu">#}
+                    {##}
+                    {#                            <li><a href="">تکاب </a></li>#}
+                    {#                            <li class="treeview">#}
+                    {#                                <a href="#">#}
+                    {#                    <span class="pull-right-container">#}
+                    {#					  <i class="fa fa-angle-right pull-right"></i>#}
+                    {#					</span>#}
+                    {#                                </a>#}
+                    {#                                <ul class="treeview-menu">#}
+                    {#                                    <li><a href="#">سطح سه</a></li>#}
+                    {#                                    <li><a href="#">سطح سه</a></li>#}
+                    {#                                </ul>#}
+                    {#                            </li>#}
+                    {#                        </ul>#}
+                    {#                    </li>#}
+                    {#                    <li class="treeview">#}
+                    {#                        <a href="#">لیست قله های داخلی موجود#}
+                    {#                            <span class="pull-right-container">#}
+                    {#              <i class="fa fa-angle-right pull-right"></i>#}
+                    {#            </span>#}
+                    {#                        </a>#}
+                    {#                        <ul class="treeview-menu">#}
+                    {##}
+                    {#                            <li><a href="">آتشکوه </a></li>#}
+                    {#                            <li class="treeview">#}
+                    {#                                <a href="#">#}
+                    {#                    <span class="pull-right-container">#}
+                    {#					  <i class="fa fa-angle-right pull-right"></i>#}
+                    {#					</span>#}
+                    {#                                </a>#}
+                    {#                            </li>#}
+                    {#                        </ul>#}
+                    {##}
+                    {#                    </li>#}
+                    <li>
+{#                        <a href="{% url "product:production_reports" %}">تولید (فیلتر=بازه زمانی معدن)</a>#}
+                    </li>
+                    <li>
+{#                        <a href="{% url "product:loaded_reports" %}">بارگیری شده(فیلتر=بازه زمانی معدن)</a>#}
+                    </li>
+                    <li>
+{#                        <a href="{% url "product:exportal_reports" %}">موجودی صادراتی (فیلتر= معدن)</a>#}
+                    </li>
+                    <li>
+{#                        <a href="{% url "product:internal_reports" %}">موجودی داخلی (فیلتر= معدن)</a>#}
+                    </li>
+			  <li>
+{#                        <a href="{% url "product:rejected_product" %}">عودت شده (فیلتر= معدن)</a>#}
+                    </li>
+                    <li>
+{#                        <a href="{% url "mine:mine_law" %}">حقوق معادن</a>#}
+                    </li>
+                    {#                    <li>#}
+                    {#                        <a href="{% url "product:internal_list_panel" %}">لیست قله های هولد (فیلتر=معدن)</a>#}
+                    {#                    </li>#}
+                    {#                    <li>#}
+                    {#                        <a href="{% url "product:internal_list_panel" %}">ارسال نمونه (فیلتر بازه زمانی - معدن)</a>#}
+                    {#                    </li>#}
+                    {#                    <li>#}
+                    {#                        <a href="{% url "product:internal_list_panel" %}">بازدید (فیلتر بازه زمانی - معدن)</a>#}
+                    </li>
+                </ul>
+            </li>
+{#            {% category_navbar %}#}
+{#            <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="edit-2"></i>#}
+{#                    <span>آمار ثبت درخواست ها</span>#}
+{#                    <span class="pull-right-container">#}
+{#								<i class="fa fa-angle-right pull-right"></i>#}
+{#							</span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="{% url "demand:sample_list" %}"><i class="ti-more"></i> نمونه</a></li>#}
+{#                    <li><a href="{% url "demand:visit_list" %}"><i class="ti-more"></i>بازدید</a></li>#}
+{#                    <li><a href="{% url "demand:hold_list" %}"><i class="ti-more"></i> Hold</a></li>#}
+                </ul>
+            </li>
+
+{#            <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="mail"></i> <span>آمار ثبت پیام ها</span>#}
+{#                    <span class="pull-right-container">#}
+{#								<i class="fa fa-angle-right pull-right"></i>#}
+{#							</span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="{% url "account:site_activity" %}"><i class="ti-more"></i>لیست پیام های ارسال شده</a>#}
+                    </li>
+                </ul>
+            </li>
 
 
+            <li>
+{#                <a href="{% url "account:activity_list" %}"><i class="ti-more"></i>آمار ثبت بروزرسانی</a>#}
+            </li>
 
 
-                                     <li>
-                                          <a href="updates.html"><i class="ti-more"></i>اطلاعات بروزرسانی شده</a>
-                                     </li>
+{#            <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="edit-2"></i>#}
+{#                    <span>کاربران پنل ادمین</span>#}
+{#                    <span class="pull-right-container">#}
+{#								<i class="fa fa-angle-right pull-right"></i>#}
+{#							</span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="{% url "account:admin_list" %}"><i class="ti-more"></i>کاربران ادمین</a></li>#}
+{#                    <li><a href="{% url "account:admin_create" %}"><i class="ti-more"></i>افزودن ادمین</a></li>#}
+                </ul>
+            </li>
 
 
+            <li>
+{#		          <li class="treeview">#}
+{#                <a href="#">#}
+{#                    <i data-feather="edit-2"></i>#}
+{#                    <span>بلاگ</span>#}
+{#                    <span class="pull-right-container">#}
+{#								<i class="fa fa-angle-right pull-right"></i>#}
+{#							</span>#}
+{#                </a>#}
+{#                <ul class="treeview-menu">#}
+{#                    <li><a href="{% url "blog:blog_panel_list" %}"><i class="ti-more"></i>لیست</a></li>#}
+{#                    <li><a href="{% url "blog:create" %}"><i class="ti-more"></i>افزودن </a></li>#}
+                </ul>
+            </li>
 
 
+            <li>
+{#                <a href="{% url "account:logout" %}">#}
+{#                    <i data-feather="lock"></i>#}
+{#                    <span>خروج</span>#}
+{#                </a>#}
+            </li>
 
+        </ul>
+    </section>
 
-
-
-					<li class="treeview">
-						<a href="#">
-							<i data-feather="edit-2"></i>
-							<span>کاربران پنل ادمین</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-right pull-right"></i>
-							</span>
-						</a>
-						<ul class="treeview-menu">
-							<li><a href="admin-user.html"><i class="ti-more"></i>کاربران ادمین</a></li>
-							<li><a href="admin-user - activity.html"><i class="ti-more"></i>فعالیت ادمین ها</a></li>
-							<li><a href="add-role.html"><i class="ti-more"></i>افزودن رول</a></li>
-						</ul>
-					</li>
-
-
-					<li>
-						<a href="auth_login.html">
-							<i data-feather="lock"></i>
-							<span>خروج</span>
-						</a>
-					</li>
-
-				</ul>
-			</section>
-
-			<div class="sidebar-footer">
-				<!-- item-->
-				<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="تنظیمات"
-					aria-describedby="tooltip92529"><i class="ti-settings"></i></a>
-				<!-- item-->
-				<a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="ایمیل"><i
-						class="ti-email"></i></a>
-				<!-- item-->
-				<a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="خروج"><i
-						class="ti-lock"></i></a>
-			</div>
-		</aside>
-
+{#    <div class="sidebar-footer">#}
+        <!-- item-->
+{#        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="تنظیمات"#}
+{#           aria-describedby="tooltip92529"><i class="ti-settings"></i></a>#}
+        <!-- item-->
+{#        <a href="mailbox_inbox.html" class="link" data-toggle="tooltip" title="" data-original-title="ایمیل"><i#}
+{#                class="ti-email"></i></a>#}
+        <!-- item-->
+{#        <a href="javascript:void(0)" class="link" data-toggle="tooltip" title="" data-original-title="خروج"><i#}
+{#                class="ti-lock"></i></a>#}
+    </div>
+</aside>
