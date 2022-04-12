@@ -48,3 +48,53 @@ class UserChangeForm(forms.ModelForm):
             'password',
             'last_login',
         )
+
+
+class LoginForm(forms.Form):
+    national_code = forms.CharField(
+        max_length=10,
+        label='کذ ملی',
+        widget=forms.TextInput(attrs={'class': 'form-control'},
+                               ))
+    password = forms.CharField(
+        label='رمز عبور',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'},
+                                   ))
+
+
+class AdminCreateForm(forms.ModelForm):
+    class Meta:
+        model = user
+        fields = (
+            'national_code',
+            'first_name',
+            'last_name',
+            'phone_number',
+            'password',
+        )
+        labels = {
+            'national_code': 'کد ملی',
+            'first_name': 'نام',
+            'last_name': 'نام خانوادگی',
+            'phone_number': 'شماه تماس',
+            'password': 'رمز عبور'
+        }
+
+
+class AdminUpdateForm(forms.ModelForm):
+    class Meta:
+        model = user
+        fields = (
+            'national_code',
+            'first_name',
+            'last_name',
+            'phone_number',
+            'password',
+        )
+        labels = {
+            'national_code': 'کد ملی',
+            'first_name': 'نام',
+            'last_name': 'نام خانوادگی',
+            'phone_number': 'شماه تماس',
+            'password': 'رمز عبور'
+        }

@@ -1,9 +1,10 @@
+from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .forms import UserCreateForm, UserChangeForm
+
+from .forms import UserChangeForm, UserCreateForm
 
 user = get_user_model()
-from django.contrib import admin
 
 
 @admin.register(user)
@@ -18,15 +19,16 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         ('Main', {'fields': ('email', 'phone_number', 'first_name', 'last_name', 'password')}),
         ('Permissions',
-         {'fields': ('is_active', 'is_admin', 'is_superuser', 'last_login', 'groups', 'user_permissions')}),
+         {'fields': (
+             'is_active', 'is_admin', 'is_student', 'is_superuser', 'last_login', 'groups', 'user_permissions')}),
     )
 
     add_fieldsets = (
         (None, {'fields': ('phone_number', 'first_name', 'last_name', 'password1', 'password2')}),
     )
-
     search_fields = ('last_name',)
     filter_horizontal = ('groups', 'user_permissions')
+    ordering = ('created',)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
