@@ -1,8 +1,9 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-from extenstion.utils import CustomCharField, get_file_path
-from django.utils.text import slugify
+from django.db import models
 from django.db.models.signals import post_save
+from django.utils.text import slugify
+
+from extenstion.utils import CustomCharField, get_file_path
 
 user = get_user_model()
 
@@ -10,15 +11,19 @@ user = get_user_model()
 # Create your models here.
 class Student(models.Model):
     GENDER = (
-        ('پسر', 'پسر'),
-        ('دختر', 'دخنر'),
+        ("پسر", "پسر"),
+        ("دختر", "دخنر"),
     )
-    user = models.OneToOneField(user, on_delete=models.CASCADE, limit_choices_to=user.objects.filter(is_student=True))
+    user = models.OneToOneField(
+        user,
+        on_delete=models.CASCADE,
+        limit_choices_to=user.objects.filter(is_student=True),
+    )
     father_name = models.CharField(max_length=125)
     father_phone_number = CustomCharField()
     mother_phone_numer = CustomCharField()
     home_number = models.CharField(max_length=10)
-    grade = models.ManyToManyField('Grade')
+    grade = models.ManyToManyField("Grade")
     profile = models.ImageField(upload_to=get_file_path)
     gender = models.CharField(max_length=4, choices=GENDER)
 
@@ -33,9 +38,9 @@ class Grade(models.Model):
 
 
 def create_student(sender, **kwargs):
-    if kwargs['created']:
-        if kwargs['instance'].is_student:
-            p1 = Student(user=kwargs['instance'])
+    if kwargs["created"]:
+        if kwargs["instance"].is_student:
+            p1 = Student(user=kwargs["instance"])
             p1.save()
 
 

@@ -1,12 +1,13 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django_jalali.db import models as jmodels
-from student.models import Grade
+
 from extenstion.utils import get_file_path
 from master.models import Master
-
+from student.models import Grade
 
 # Create your models here.
+
 
 class Course(models.Model):
     STATUS = (
@@ -17,43 +18,43 @@ class Course(models.Model):
     objects = jmodels.jManager()
     title = models.CharField(
         max_length=125,
-        verbose_name='عنوان دوره',
+        verbose_name="عنوان دوره",
     )
     logo = models.ImageField(
         upload_to=get_file_path,
-        verbose_name='لوگوی دوره',
+        verbose_name="لوگوی دوره",
     )
     # description = RichTextField()
     description = models.TextField(
-        verbose_name='توضیحات دوره',
+        verbose_name="توضیحات دوره",
     )
     start_time = jmodels.jDateField(
-        verbose_name='تاریخ شروع',
+        verbose_name="تاریخ شروع",
     )
     finish_time = jmodels.jDateField(
-        verbose_name='تاریخ اتمام',
+        verbose_name="تاریخ اتمام",
     )
     master = models.ForeignKey(
         Master,
         on_delete=models.CASCADE,
-        related_name='courses',
-        verbose_name='استاد',
+        related_name="courses",
+        verbose_name="استاد",
     )
     fee = models.PositiveIntegerField(
-        verbose_name='شهریه',
+        verbose_name="شهریه",
     )
     status = models.CharField(
         max_length=15,
         choices=STATUS,
-        verbose_name='وضعیت دوره',
+        verbose_name="وضعیت دوره",
     )
     created = models.DateTimeField(
         auto_now_add=True,
-        verbose_name='تاریخ ایجاد دوره',
+        verbose_name="تاریخ ایجاد دوره",
     )
     updated = models.DateTimeField(
         auto_now=True,
-        verbose_name='تاریخ آپدیت دوره',
+        verbose_name="تاریخ آپدیت دوره",
     )
     grade = models.ForeignKey(
         Grade,
@@ -65,11 +66,11 @@ class Course(models.Model):
     # participation=models.ManyToManyField()
 
     class Meta:
-        verbose_name = 'دوره'
-        verbose_name_plural = 'دوره ها'
+        verbose_name = "دوره"
+        verbose_name_plural = "دوره ها"
 
     def __str__(self):
-        return f'{self.master.last_name}-{self.title}'
+        return f"{self.master.last_name}-{self.title}"
 
     def get_absolute_url(self):
         pass

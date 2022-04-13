@@ -12,27 +12,49 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreateForm
 
-    list_display = ('national_code', 'phone_number', 'is_admin')
-    list_filter = ('is_admin',)
-    readonly_fields = ('last_login',)
+    list_display = ("national_code", "phone_number", "is_admin")
+    list_filter = ("is_admin",)
+    readonly_fields = ("last_login",)
 
     fieldsets = (
-        ('Main', {'fields': ('phone_number', 'first_name', 'last_name', 'password')}),
-        ('Permissions',
-         {'fields': (
-             'is_active', 'is_admin', 'is_student', 'is_superuser', 'last_login', 'groups', 'user_permissions')}),
+        ("Main", {"fields": ("phone_number", "first_name", "last_name", "password")}),
+        (
+            "Permissions",
+            {
+                "fields": (
+                    "is_active",
+                    "is_admin",
+                    "is_student",
+                    "is_superuser",
+                    "last_login",
+                    "groups",
+                    "user_permissions",
+                )
+            },
+        ),
     )
 
     add_fieldsets = (
-        (None, {'fields': ('phone_number', 'first_name', 'last_name', 'password1', 'password2')}),
+        (
+            None,
+            {
+                "fields": (
+                    "phone_number",
+                    "first_name",
+                    "last_name",
+                    "password1",
+                    "password2",
+                )
+            },
+        ),
     )
-    search_fields = ('last_name',)
-    filter_horizontal = ('groups', 'user_permissions')
-    ordering = ('created',)
+    search_fields = ("last_name",)
+    filter_horizontal = ("groups", "user_permissions")
+    ordering = ("created",)
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
         is_superuser = request.user.is_superuser
         if not is_superuser:
-            form.base_fields['is_superuser'].disabled = True
+            form.base_fields["is_superuser"].disabled = True
         return form

@@ -5,4 +5,4 @@ from django.views.generic import TemplateView, View
 
 
 class PanelView(TemplateView):
-    template_name = 'config/panel.html'
+    template_name = "config/panel.html"
