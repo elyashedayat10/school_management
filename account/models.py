@@ -5,6 +5,7 @@ from django.db import models
 
 from .managers import UserManager
 
+
 NATIONAL_CODE_REGEX = RegexValidator(r'^[0-9]{10}$', 'same as pattern')
 PHONE_NUMBER_REGEX = RegexValidator(r'^09[0|1|2|9][0-9]{8}$', 'same as pattern')
 
@@ -34,3 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+
+
+

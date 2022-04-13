@@ -1,9 +1,10 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django_jalali.db import models as jmodels
-
+from student.models import Grade
 from extenstion.utils import get_file_path
 from master.models import Master
+
 
 # Create your models here.
 
@@ -53,6 +54,12 @@ class Course(models.Model):
     updated = models.DateTimeField(
         auto_now=True,
         verbose_name='تاریخ آپدیت دوره',
+    )
+    grade = models.ForeignKey(
+        Grade,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
     )
 
     # participation=models.ManyToManyField()
