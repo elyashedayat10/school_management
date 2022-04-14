@@ -1,5 +1,4 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
-
 # Create your models here.
 from django.core.validators import RegexValidator
 from django.db import models

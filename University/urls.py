@@ -4,12 +4,13 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("master/", include("master.urls", namespace="Master")),
-    path("course/", include("course.urls", namespace="Course")),
-    path("ckeditor/", include("ckeditor_uploader.urls")),
-    path("account/", include("account.urls", namespace="account")),
-    path("", include("config.urls", namespace="config")),
+    path('admin/', admin.site.urls),
+    path('master/', include('master.urls', namespace='Master')),
+    path('course/', include('course.urls', namespace='Course')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('account/', include('account.urls', namespace='account')),
+    path('student/', include('student.urls', namespace='Student')),
+    path('', include('config.urls', namespace='config')),
 ]
 if settings.DEBUG:
     # ADD ROOT MEDIA FILES

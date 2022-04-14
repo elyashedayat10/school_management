@@ -1,14 +1,8 @@
 from django.urls import path
 
-from .views import (
-    AdminCreateView,
-    AdminDetailView,
-    AdminListView,
-    AdminUpdateView,
-    UserDeleteView,
-    UserLoginView,
-    UserLogoutView,
-)
+from .views import (AdminCreateView, AdminDetailView, AdminListView,
+                    AdminUpdateView, UserDeleteView, UserLoginView,
+                    UserLogoutView)
 
 app_name = "Account"
 urlpatterns = [
