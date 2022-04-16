@@ -4,7 +4,9 @@ from django_jalali.db import models as jmodels
 
 from extenstion.utils import get_file_path
 from master.models import Master
-from student.models import Grade
+from student.models import Grade, Student
+from institute.models import Institute
+
 
 # Create your models here.
 
@@ -62,8 +64,17 @@ class Course(models.Model):
         blank=True,
         null=True,
     )
+    institute = models.ForeignKey(
+        Institute,
+        on_delete=models.CASCADE,
+        related_name='courses',
+        null=True,
+        blank=True,
+    )
 
-    # participation=models.ManyToManyField()
+    participation = models.ManyToManyField(
+        Student,
+    )
 
     class Meta:
         verbose_name = "دوره"

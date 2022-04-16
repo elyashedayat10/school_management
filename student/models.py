@@ -4,6 +4,7 @@ from django.db.models.signals import post_save
 from django.utils.text import slugify
 
 from extenstion.utils import CustomCharField, get_file_path
+from institute.models import Institute
 
 user = get_user_model()
 
@@ -26,6 +27,7 @@ class Student(models.Model):
     grade = models.ManyToManyField("Grade")
     profile = models.ImageField(upload_to=get_file_path)
     gender = models.CharField(max_length=4, choices=GENDER)
+    institute = models.ForeignKey(Institute, on_delete=models.CASCADE, related_name='students', null=True, blank=True)
 
 
 class Grade(models.Model):
