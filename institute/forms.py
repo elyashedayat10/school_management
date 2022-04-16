@@ -8,8 +8,10 @@ class InstituteForm(forms.ModelForm):
         fields = (
             'name',
             'logo',
+            'description',
         )
         labels = {
             'name': 'نام آموزشگاه',
             'logo': 'لوگو',
+            'description': 'توضیحات',
         }

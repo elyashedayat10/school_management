@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import include, path
 
 urlpatterns = [
@@ -12,6 +13,7 @@ urlpatterns = [
     path('student/', include('student.urls', namespace='Student')),
     path('institute/', include('institute.urls', namespace='Institute')),
     path('', include('config.urls', namespace='config')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 if settings.DEBUG:
     # ADD ROOT MEDIA FILES

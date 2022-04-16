@@ -8,7 +8,7 @@ from .forms import InstituteForm
 
 class InstituteListView(ListView):
     model = Institute
-    template_name = 'Institute/'
+    template_name = 'Institute/list.html'
 
 
 class InstituteDetailView(DetailView):
@@ -20,9 +20,9 @@ class InstituteDetailView(DetailView):
 
 class InstituteCreateView(CreateView):
     model = Institute
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('institute:list')
     form_class = InstituteForm
-    template_name = 'Institute/'
+    template_name = 'Institute/create.html'
 
 
 class InstituteUpdateView(UpdateView):
@@ -30,14 +30,12 @@ class InstituteUpdateView(UpdateView):
     form_class = InstituteForm
     slug_field = 'id'
     slug_url_kwarg = 'id'
-    template_name = 'Institute/'
-
-    def get_success_url(self):
-        pass
+    template_name = 'Institute/update.html'
+    success_url = reverse_lazy('institute:list')
 
 
 class InstituteDeleteView(View):
     def get(self, request, institute_id):
         institute = get_object_or_404(Institute, id=institute_id)
         institute.delete()
-        return redirect('')
+        return redirect('institute:list')
