@@ -5,8 +5,9 @@ from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
 
 from extenstion.mixins import AdminUserMixin
 
-from .forms import CourseForm
+from .forms import CourseCreateForm, CourseUpdateForm
 from .models import Course
+
 
 # Create your views here.
 
@@ -23,11 +24,11 @@ class CourseDetailView(AdminUserMixin, DetailView):
     slug_url_kwarg = "id"
 
 
-class CourseCreateView(AdminUserMixin, CreateView):
+class CourseCreateView(CreateView):
     model = Course
     template_name = "course/create.html"
     success_url = reverse_lazy("course:course_list")
-    form_class = CourseForm
+    form_class = CourseCreateForm
 
 
 class CourseUpdateView(AdminUserMixin, UpdateView):
@@ -35,7 +36,7 @@ class CourseUpdateView(AdminUserMixin, UpdateView):
     slug_field = "id"
     slug_url_kwarg = "id"
     template_name = "course/update.html"
-    form_class = CourseForm
+    form_class = CourseUpdateForm
 
     def get_success_url(self):
         return reverse("course:course_detail", kwargs=[self.object.id])

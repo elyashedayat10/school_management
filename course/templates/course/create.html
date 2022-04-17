@@ -8,7 +8,7 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="page-title">افزودن  آموزشگاه</h3>
+                        <h3 class="page-title">افزودن دوره</h3>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
@@ -30,7 +30,7 @@
                         <div class="box">
 
                             <div class="box-header">
-                                <h4 class="box-title">افزودن آموزشگاه</h4>
+                                <h4 class="box-title">افزودن دوره</h4>
                             </div>
                             <div class="box-body">
 
@@ -38,16 +38,16 @@
                                     {{ form.media }}
                                     {% csrf_token %}
                                     <div class="form-group row">
-                                    {% for field in form.visible_fields %}
-                                        <label class="col-form-label col-md-2">{{ field.label }}</label>
-                                        {{ field|add_class:'form-control' }}
-                                        {% for error in field.errors %}
-                                            <span class="help-block">{{ error }}</span>
+                                        {% for field in form.visible_fields %}
+                                            <label class="col-form-label col-md-2">{{ field.label }}</label>
+                                            {{ field|add_class:'form-control' }}
+                                            {% for error in field.errors %}
+                                                <span class="help-block">{{ error }}</span>
+                                            {% endfor %}
                                         {% endfor %}
-                                    {% endfor %}
-                                        </div>
-                                        <input value="افزودن آموزشگاه" class="btn-success  form-control "
-                                               type="submit">
+                                    </div>
+                                    <input value="افزودن دوره" class="btn-success  form-control "
+                                           type="submit">
 
                                 </form>
                             </div>
