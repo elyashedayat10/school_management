@@ -13,19 +13,19 @@ from .models import Course
 
 class CourseListView(AdminUserMixin, ListView):
     model = Course
-    template_name = "course/course_list.html"
+    template_name = "course/list.html"
 
 
 class CourseDetailView(AdminUserMixin, DetailView):
     model = Course
-    template_name = "course/course_detail.html"
+    template_name = "course/detail.html"
     slug_field = "id"
     slug_url_kwarg = "id"
 
 
 class CourseCreateView(AdminUserMixin, CreateView):
     model = Course
-    template_name = "course/course_create.html"
+    template_name = "course/create.html"
     success_url = reverse_lazy("course:course_list")
     form_class = CourseForm
 
@@ -34,7 +34,7 @@ class CourseUpdateView(AdminUserMixin, UpdateView):
     model = Course
     slug_field = "id"
     slug_url_kwarg = "id"
-    template_name = "course/course_update.html"
+    template_name = "course/update.html"
     form_class = CourseForm
 
     def get_success_url(self):

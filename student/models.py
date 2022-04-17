@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.signals import post_save
 from django.utils.text import slugify
-
+from django.urls import reverse
 from extenstion.utils import CustomCharField, get_file_path
 from institute.models import Institute
 
@@ -20,14 +20,38 @@ class Student(models.Model):
         on_delete=models.CASCADE,
         limit_choices_to=user.objects.filter(is_student=True),
     )
-    father_name = models.CharField(max_length=125)
+    father_name = models.CharField(
+        max_length=125,
+    )
     father_phone_number = CustomCharField()
     mother_phone_numer = CustomCharField()
-    home_number = models.CharField(max_length=10)
-    grade = models.ManyToManyField("Grade")
-    profile = models.ImageField(upload_to=get_file_path)
-    gender = models.CharField(max_length=4, choices=GENDER)
-    institute = models.ForeignKey(Institute, on_delete=models.CASCADE, related_name='students', null=True, blank=True)
+    home_number = models.CharField(
+        max_length=10,
+    )
+    grade = models.ManyToManyField(
+        "Grade",
+    )
+    profile = models.ImageField(
+        upload_to=get_file_path,
+    )
+    gender = models.CharField(
+        max_length=4,
+        choices=GENDER,
+    )
+    institute = models.ForeignKey(
+        Institute,
+        on_delete=models.CASCADE,
+        related_name='students',
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return f'{self.user}-{self.institute}'
+
+    def get_absolute_url(self):
+        return reverse('Student:detail', args=[self.id])
+
 
 
 class Grade(models.Model):

@@ -4,10 +4,10 @@ from .models import Student
 
 
 class StudentForm(forms.ModelForm):
-    national_code = forms.CharField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-    phone_number = forms.CharField()
+    national_code = forms.CharField(label='کد ملی')
+    first_name = forms.CharField(label='نام')
+    last_name = forms.CharField(label='نام خانوادگی')
+    phone_number = forms.CharField(label='شماره تماس')
 
     class Meta:
         model = Student
