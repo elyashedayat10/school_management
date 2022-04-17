@@ -5,15 +5,15 @@ from django.template.defaulttags import url
 from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('master/', include('master.urls', namespace='Master')),
-    path('course/', include('course.urls', namespace='Course')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('account/', include('account.urls', namespace='account')),
-    path('student/', include('student.urls', namespace='Student')),
-    path('institute/', include('institute.urls', namespace='Institute')),
-    path('', include('config.urls', namespace='config')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path("admin/", admin.site.urls),
+    path("master/", include("master.urls", namespace="Master")),
+    path("course/", include("course.urls", namespace="Course")),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
+    path("account/", include("account.urls", namespace="account")),
+    path("student/", include("student.urls", namespace="Student")),
+    path("institute/", include("institute.urls", namespace="Institute")),
+    path("", include("config.urls", namespace="config")),
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
 if settings.DEBUG:
     # ADD ROOT MEDIA FILES

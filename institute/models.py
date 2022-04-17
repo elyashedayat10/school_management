@@ -1,8 +1,8 @@
-from django.db import models
-from extenstion.utils import get_file_path
 from ckeditor.fields import RichTextField
+from django.db import models
 from django.urls import reverse
 
+from extenstion.utils import get_file_path
 
 # Create your models here.
 
@@ -26,4 +26,4 @@ class Institute(models.Model):
         return students_number
 
     def get_absolute_url(self):
-        return reverse('institute:detail', args=[self.id])
+        return reverse("institute:detail", args=[self.id])

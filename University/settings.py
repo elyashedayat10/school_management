@@ -27,14 +27,14 @@ INSTALLED_APPS = [
     "ckeditor",
     "django_jalali",
     "django_cleanup",
-    'widget_tweaks',
+    "widget_tweaks",
     # local
     "master.apps.MasterConfig",
     "course.apps.CourseConfig",
     "config.apps.ConfigConfig",
     "account.apps.AccountConfig",
     "student.apps.StudentConfig",
-    'institute.apps.InstiutiConfig',
+    "institute.apps.InstiutiConfig",
 ]
 
 MIDDLEWARE = [

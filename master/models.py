@@ -1,7 +1,8 @@
 from django.core.validators import ValidationError
 from django.db import models
 from django.urls import reverse
-from extenstion.utils import get_file_path, NATIONAL_CODE_REGEX
+
+from extenstion.utils import NATIONAL_CODE_REGEX, get_file_path
 from institute.models import Institute
 
 
@@ -35,7 +36,7 @@ class Master(models.Model):
     )
     institute = models.ManyToManyField(
         Institute,
-        related_name='masters',
+        related_name="masters",
     )
 
     class Meta:
@@ -46,7 +47,7 @@ class Master(models.Model):
         return f"{self.first_name}-{self.last_name}"
 
     def get_absolute_url(self):
-        return reverse('Master:Detail', args=[self.id])
+        return reverse("Master:Detail", args=[self.id])
 
     def master_course_count(self):
         course_count = self.courses.count()

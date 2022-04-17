@@ -3,10 +3,9 @@ from django.db import models
 from django_jalali.db import models as jmodels
 
 from extenstion.utils import get_file_path
+from institute.models import Institute
 from master.models import Master
 from student.models import Grade, Student
-from institute.models import Institute
-
 
 # Create your models here.
 
@@ -67,7 +66,7 @@ class Course(models.Model):
     institute = models.ForeignKey(
         Institute,
         on_delete=models.CASCADE,
-        related_name='courses',
+        related_name="courses",
         null=True,
         blank=True,
     )
@@ -93,4 +92,3 @@ class Course(models.Model):
     def course_all_income(self):
         calculation = self.course_student_count() * self.fee
         return calculation
-

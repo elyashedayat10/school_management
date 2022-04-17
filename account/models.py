@@ -1,8 +1,10 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+
 # Create your models here.
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models import Count
+
 from .managers import UserManager
 
 NATIONAL_CODE_REGEX = RegexValidator(r"^[0-9]{10}$", "same as pattern")
@@ -34,11 +36,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f"{self.first_name}-{self.last_name}"
 
     def user_count(self):
-        user = self.objects.aggregate(Count('id'))['id__count']
+        user = self.objects.aggregate(Count("id"))["id__count"]
         return user
 
     def student_count(self):
-        student = self.objects.filter(is_student=True).aggregate(Count('id'))['id__count']
+        student = self.objects.filter(is_student=True).aggregate(Count("id"))[
+            "id__count"
+        ]
         return student
 
     @property

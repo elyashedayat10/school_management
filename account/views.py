@@ -3,8 +3,7 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
-                                  View)
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
 
 from extenstion.mixins import SuperuserMixin
 
@@ -17,36 +16,33 @@ user = get_user_model()
 
 
 class UserLoginView(View):
+
     def dispatch(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return super(UserLoginView, self).dispatch(*request, *args, **kwargs)
+        if not request.user.is_authenticated:
+            return super(UserLoginView, self).dispatch(request, *args, **kwargs)
         else:
             return redirect("config:Panel")
 
-    form_class = LoginForm
     template_name = "account/login.html"
 
     def get(self, request):
-        return render(request, self.template_name, {"form": self.form_class})
+        return render(request, self.template_name)
 
     def post(self, request):
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(
-                request, national_code=cd["national_code"], password=cd["password"]
+        user = authenticate(
+            request, national_code=request.POST.get('national_code'), password=request.POST.get('password'),
+        )
+        if user:
+            login(request, user)
+            messages.success(
+                request, "با موفقیت وارد حساب خود شدید", "btn btn-success"
             )
-            if user:
-                login(request, user)
-                messages.success(
-                    request, "با موفقیت وارد حساب خود شدید", "btn btn-success"
-                )
-                if user.is_admin:
-                    return redirect("")
+            if user.is_admin:
                 return redirect("config:Panel")
-            else:
-                messages.error(request, "هیچ کاربری یا این اطلاعات وجود ندارد")
-                return redirect("")
+            return redirect("Student:detail", id=user.id)
+        else:
+            messages.error(request, "هیچ کاربری یا این اطلاعات وجود ندارد")
+            return redirect(request.path_info)
 
 
 class UserLogoutView(LoginRequiredMixin, View):

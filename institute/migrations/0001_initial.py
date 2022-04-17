@@ -2,6 +2,7 @@
 
 import ckeditor.fields
 from django.db import migrations, models
+
 import extenstion.utils
 
 
@@ -9,19 +10,26 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Institute',
+            name="Institute",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=125)),
-                ('logo', models.ImageField(upload_to=extenstion.utils.get_file_path)),
-                ('description', ckeditor.fields.RichTextField()),
-                ('created', models.DateField(auto_now_add=True)),
-                ('updated', models.DateField(auto_now_add=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=125)),
+                ("logo", models.ImageField(upload_to=extenstion.utils.get_file_path)),
+                ("description", ckeditor.fields.RichTextField()),
+                ("created", models.DateField(auto_now_add=True)),
+                ("updated", models.DateField(auto_now_add=True)),
             ],
         ),
     ]
