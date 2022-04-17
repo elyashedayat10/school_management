@@ -85,3 +85,12 @@ class Course(models.Model):
 
     def get_absolute_url(self):
         pass
+
+    def course_student_count(self):
+        student = self.participation.all().count()
+        return student
+
+    def course_all_income(self):
+        calculation = self.course_student_count() * self.fee
+        return calculation
+

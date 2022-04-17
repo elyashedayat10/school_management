@@ -14,12 +14,16 @@ class Institute(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
+    def course_count(self):
+        course_number = self.courses.all().count()
+        return course_number
+
     def student_count(self):
         students_number = self.students.all().count()
         return students_number
 
     def get_absolute_url(self):
         return reverse('institute:detail', args=[self.id])
-
-    def __str__(self):
-        return self.name
