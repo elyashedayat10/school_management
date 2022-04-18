@@ -3,8 +3,18 @@ from django import forms
 from .models import Student, Grade
 
 
+class StudentSelectForm(forms.Form):
+    student = forms.ModelMultipleChoiceField(
+        queryset=Student.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+    )
+    grade = forms.ModelChoiceField(
+        queryset=Grade.objects.all(),
+        widget=forms.CheckboxInput,
+    )
 
-class GradeUpdateForm(forms.ModelForm):
+
+class GradeForm(forms.ModelForm):
     class Meta:
         model = Grade
         fields = (
@@ -14,17 +24,6 @@ class GradeUpdateForm(forms.ModelForm):
         labels = {
             'title': 'نام',
             'parent': 'دسته مادر',
-        }
-
-
-class GradeCreateForm(forms.ModelForm):
-    class Meta:
-        model = Grade
-        fields = (
-            'title',
-        )
-        labels = {
-            'title': 'نام',
         }
 
 

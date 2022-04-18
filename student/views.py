@@ -14,7 +14,7 @@ from django.views.generic import (
     View,
 )
 
-from .forms import StudentForm, GradeCreateForm, GradeUpdateForm
+from .forms import StudentForm, GradeForm, StudentSelectForm
 from .models import Student, Grade, installment
 from course.models import Course
 
@@ -100,7 +100,7 @@ class GradeListView(ListView):
 
 
 class GradeCreateView(CreateView):
-    form_class = GradeCreateForm
+    form_class = GradeForm
     template_name = 'student/grade_create.html'
     success_url = reverse_lazy('Student:grade_list')
 
@@ -114,7 +114,7 @@ class GradeCreateView(CreateView):
 
 
 class GradeUpdateView(UpdateView):
-    form_class = GradeUpdateForm
+    form_class = GradeForm
     template_name = 'student/grade_update.html'
     success_url = reverse_lazy('Student:grade_list')
     id_field = 'id'
@@ -160,3 +160,24 @@ class InstallmentCreateView(View):
             messages.success(request, 'قسط بندی با موفقیت انجام شد', 'btn btn-success')
             return redirect('')
         messages.error(request, 'خطا در انجام عملیات', 'btn btn-danger')
+
+
+class StudentSelectView(View):
+    form_class = StudentSelectForm
+    template_name = 'account/select.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'form': StudentSelectForm})
+
+    def post(self, request):
+        cd = self.form_class(request.POST)
+        student_list = []
+        model_qs = cd['student']
+        for obj in model_qs:
+            model_obj = Student.objects.get(id=obj.id)
+            model_obj.grade = cd['grade']
+            student_list.append(model_obj)
+
+        Student.objects.bulk_update(student_list, ['grade'])
+        messages.success(request, 'به روزرسانی با موفقیت انجام شد', 'btn btn-success')
+        return redirect('Student:list')

@@ -221,7 +221,7 @@
                                             <th>کد ملی</th>
                                             <th>شماره تماس</th>
                                             <th>آخرین ورود</th>
-                                            <th>پروفایل</th>
+
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -232,8 +232,7 @@
                                                 <td>{{ admin.national_code }}</td>
                                                 <td>{{ admin.phone_number }}</td>
                                                 <td>{{ admin.last_login }}</td>
-                                                <td><a class="btn btn-primary" href="{{ admin.get_absolute_url }}">پروفایل</a>
-                                                </td>
+
                                             </tr>
                                         {% empty %}
                                             <h1>هیچ ادمینی ثبت نشده است</h1>
