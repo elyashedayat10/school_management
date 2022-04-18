@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.urls import reverse
 from django.utils.text import slugify
+from django.db.models import Sum
 
 from extenstion.utils import CustomCharField, get_file_path
 from institute.models import Institute
@@ -53,14 +54,44 @@ class Student(models.Model):
     def get_absolute_url(self):
         return reverse("Student:detail", args=[self.id])
 
+    def total_pay(self):
+        total_paying_estimate = self.course_set.aggregate(Sum('fee'))['fee__sum']
+        return total_paying_estimate
+
+
+class installment(models.Model):
+    student = models.ForeignKey(
+        Student,
+        on_delete=models.CASCADE,
+        related_name='installment',
+    )
+    paid = models.BooleanField(
+        default=False,
+    )
+    amount = models.IntegerField()
+
 
 class Grade(models.Model):
-    title = models.CharField(max_length=125)
-    slug = models.SlugField(unique=True, blank=True)
+    title = models.CharField(
+        max_length=125,
+    )
+    created = models.DateField(
+        auto_now_add=True,
+    )
+    parent = models.ForeignKey(
+        'self',
+        on_delete=models.CASCADE,
+        related_name='sub_grade',
+        null=True,
+        blank=True,
+    )
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         return super(Grade, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f'{self.parent}-{self.title}'
 
 
 def create_student(sender, **kwargs):

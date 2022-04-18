@@ -95,6 +95,23 @@
             <li class="treeview">
                 <a href="#">
                     <i data-feather="message-circle"></i>
+                    <span>پایه ها</span>
+                    <span class="pull-right-container">
+								<i class="fa fa-angle-right pull-right"></i>
+							</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{% url "Student:grade_list" %}"><i class="ti-more"></i>
+                        لیست پایه ها</a></li>
+                    <li><a href="{% url "Student:grade_create" %}"><i class="ti-more"></i>افزودن پایه</a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li class="treeview">
+                <a href="#">
+                    <i data-feather="message-circle"></i>
                     <span>کاربران ادمین</span>
                     <span class="pull-right-container">
 								<i class="fa fa-angle-right pull-right"></i>

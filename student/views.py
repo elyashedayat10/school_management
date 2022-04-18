@@ -1,18 +1,21 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+    render,
+)
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView,
-    DeleteView,
     DetailView,
     ListView,
     UpdateView,
     View,
 )
 
-from .forms import StudentForm
-from .models import Student
+from .forms import StudentForm, GradeCreateForm, GradeUpdateForm
+from .models import Student, Grade, installment
 
 user = get_user_model()
 
@@ -25,8 +28,8 @@ class StudentListView(ListView):
 
 class StudentDetailView(DetailView):
     model = Student
-    slug_field = "id"
-    slug_url_kwarg = "id"
+    id_field = "id"
+    id_url_kwarg = "id"
     template_name = "student/detail.html"
 
 
@@ -67,8 +70,8 @@ class StudentUpdateView(UpdateView):
     form_class = StudentForm
     success_url = reverse_lazy("")
     template_name = "student/update.html"
-    slug_field = "id"
-    slug_url_kwarg = "id"
+    id_field = "id"
+    id_url_kwarg = "id"
 
     def form_invalid(self, form):
         new_form = form.save(commit=False)
@@ -83,3 +86,49 @@ class StudentUpdateView(UpdateView):
     def form_valid(self, form):
         messages.success()
         return super(StudentUpdateView, self).form_valid(form)
+
+
+class GradeListView(ListView):
+    model = Grade
+    template_name = 'student/grade_list.html'
+
+
+class GradeCreateView(CreateView):
+    form_class = GradeCreateForm
+    template_name = 'student/grade_create.html'
+    success_url = reverse_lazy()
+
+    def form_valid(self, form):
+        messages.success(self.request, 'پایه با موفقیت اضافه شد', 'btn btn-success')
+        return super(GradeCreateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.success(self.request, 'خطلا دز اقزودن پایه', 'btn btn-danger')
+        return super(GradeCreateView, self).form_invalid(form)
+
+
+class GradeUpdateView(UpdateView):
+    form_class = GradeUpdateForm
+    template_name = 'student/grade_update.html'
+    success_url = reverse_lazy()
+    id_field = 'id'
+    id_url_kwarg = 'id'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'به روزرسانی با موفقیت انجام شد', 'btn btn-success')
+        return super(GradeUpdateView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        messages.error(self.request, 'خطلا دز به روزرسانی', 'btn btn-danger')
+        return super(GradeUpdateView, self).form_invalid(form)
+
+
+class GradeDeleteView(View):
+    def get(self, request, grade_id):
+        grade = get_object_or_404(Grade, id=grade_id)
+        grade.delete()
+        messages.success(request, 'پایه با موفقیت حذف شد', 'btn btn-success')
+        return redirect('Student:grade_list')
+
+
+
