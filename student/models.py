@@ -52,11 +52,15 @@ class Student(models.Model):
         return f"{self.user}-{self.institute}"
 
     def get_absolute_url(self):
-        return reverse("Student:detail", args=[self.id])
+        return reverse("Student:detail", args=[self.pk])
 
     def total_pay(self):
         total_paying_estimate = self.course_set.aggregate(Sum('fee'))['fee__sum']
         return total_paying_estimate
+
+    def get_course_count(self):
+        course_count = self.course_set.all().count()
+        return course_count
 
 
 class installment(models.Model):

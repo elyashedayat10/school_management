@@ -6,6 +6,8 @@ from extenstion.utils import get_file_path
 from institute.models import Institute
 from master.models import Master
 from student.models import Grade, Student
+from django.urls import reverse
+
 
 # Create your models here.
 
@@ -25,7 +27,6 @@ class Course(models.Model):
         upload_to=get_file_path,
         verbose_name="لوگوی دوره",
     )
-    # description = RichTextField()
     description = models.TextField(
         verbose_name="توضیحات دوره",
     )
@@ -48,6 +49,7 @@ class Course(models.Model):
         max_length=15,
         choices=STATUS,
         verbose_name="وضعیت دوره",
+        default='شروع نشده'
     )
     created = models.DateTimeField(
         auto_now_add=True,
@@ -83,7 +85,7 @@ class Course(models.Model):
         return f"{self.master.last_name}-{self.title}"
 
     def get_absolute_url(self):
-        pass
+        return reverse('Course:Detail', args=[self.id])
 
     def course_student_count(self):
         student = self.participation.all().count()
@@ -92,4 +94,3 @@ class Course(models.Model):
     def course_all_income(self):
         calculation = self.course_student_count() * self.fee
         return calculation
-

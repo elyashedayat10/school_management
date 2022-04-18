@@ -16,6 +16,7 @@ from django.views.generic import (
 
 from .forms import StudentForm, GradeCreateForm, GradeUpdateForm
 from .models import Student, Grade, installment
+from course.models import Course
 
 user = get_user_model()
 
@@ -23,64 +24,69 @@ user = get_user_model()
 # Create your views here.
 class StudentListView(ListView):
     model = Student
-    template_name = "student/list.html"
+    template_name = 'student/list.html'
 
 
 class StudentDetailView(DetailView):
     model = Student
-    id_field = "id"
-    id_url_kwarg = "id"
-    template_name = "student/detail.html"
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+    template_name = 'student/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context_data = super(StudentDetailView, self).get_context_data(**kwargs)
+        context_data['course_list'] = Course.objects.all()
+        return context_data
 
 
 class StudentDeleteView(View):
     def get(self, request, student_id):
         student = get_object_or_404(Student, id=student_id)
         student.delete()
-        return redirect("")
+        return redirect('')
 
 
 class StudentCreateView(CreateView):
     model = Student
     form_class = StudentForm
-    success_url = reverse_lazy("")
-    template_name = "student/create.html"
+    success_url = reverse_lazy('')
+    template_name = 'student/create.html'
 
     def form_valid(self, form):
         new_form = form.save(commit=False)
         cd = form.cleaned_data
         user_obj = user.objects.create_user(
-            national_code=cd["national_code"],
-            first_name=cd["first_name"],
-            last_name=cd["last_name"],
-            phone_number=cd["phone_number"],
+            national_code=cd['national_code'],
+            first_name=cd['first_name'],
+            last_name=cd['last_name'],
+            phone_number=cd['phone_number'],
         )
         new_form.user = user_obj
         new_form.save()
-        messages.success(self.request, "", "btn btn-success")
+        messages.success(self.request, '', 'btn btn-success')
         return super(StudentCreateView, self).form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, "", "btn btn-danger")
+        messages.error(self.request, '', 'btn btn-danger')
         return super(StudentCreateView, self).form_invalid(form)
 
 
 class StudentUpdateView(UpdateView):
     model = Student
     form_class = StudentForm
-    success_url = reverse_lazy("")
-    template_name = "student/update.html"
-    id_field = "id"
-    id_url_kwarg = "id"
+    success_url = reverse_lazy('')
+    template_name = 'student/update.html'
+    id_field = 'id'
+    id_url_kwarg = 'id'
 
     def form_invalid(self, form):
         new_form = form.save(commit=False)
         cd = form.cleaned_data
-        user_obj = get_object_or_404(user, id=self.kwargs.get("id"))
+        user_obj = get_object_or_404(user, id=self.kwargs.get('id'))
         # user_obj.
         new_form.user = user_obj
         new_form.save()
-        messages.success(self.request, "", "btn btn-success")
+        messages.success(self.request, '', 'btn btn-success')
         return super(StudentUpdateView, self).form_invalid(form)
 
     def form_valid(self, form):
@@ -133,7 +139,7 @@ class GradeDeleteView(View):
 
 class InstallmentCreateView(View):
     template_name = ''
-    form_class =''
+    form_class = ''
 
     def setup(self, request, *args, **kwargs):
         self.student = student = get_object_or_404(Student, id=self.kwargs.get('student_id'))
