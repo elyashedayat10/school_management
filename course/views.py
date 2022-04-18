@@ -1,11 +1,13 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, View, FormView
 
 from extenstion.mixins import AdminUserMixin
 
-from .forms import CourseCreateForm,CourseUpdateForm
+from .forms import CourseCreateForm, CourseUpdateForm
 from .models import Course
+from student.models import Student
+
 
 # Create your views here.
 
@@ -45,3 +47,12 @@ class CourseDeleteView(AdminUserMixin, View):
         course = get_object_or_404(Course, id=course_id)
         course.delete()
         return redirect("Course:Course_list")
+
+
+class CourseParticipationAdd(View):
+    def get(self, request, course_id, student_id):
+        student = get_object_or_404(Student, id=student_id)
+        course = get_object_or_404(Course, id=course_id)
+        course.participation.add(student)
+        course.save()
+        return redirect(request.META.get('HTTP_REFERER', '/'))
