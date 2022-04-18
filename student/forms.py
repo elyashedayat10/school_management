@@ -3,6 +3,7 @@ from django import forms
 from .models import Student, Grade
 
 
+
 class GradeUpdateForm(forms.ModelForm):
     class Meta:
         model = Grade

@@ -2,7 +2,7 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse
 from django.db.models import Sum
-
+from master.models import Master
 
 from extenstion.utils import get_file_path
 
@@ -29,7 +29,7 @@ class Institute(models.Model):
         return students_number
 
     def master_count(self):
-        master_count = master.models.Master.objects.filter(courses__institute_id=self.id)
+        master_count = Master.objects.filter(courses__institute_id=self.id).count()
         return master_count
 
     def get_absolute_url(self):
