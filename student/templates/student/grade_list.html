@@ -211,21 +211,24 @@
                                         <tr>
                                             <th>پایه</th>
                                             <th>رشته</th>
-                                            <th>آموزشگاها</th>
                                             <th>تعدا دانش آموز</th>
-                                            <th>تاریخ افزودن</th>
+                                            <th>آموزشگاه</th>
                                             <th>تعداد دوره</th>
+                                            <th>تاریخ افزودن</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>رضا افشار</td>
-                                            <td>طراح سیستم</td>
-                                            <td>تهران</td>
-                                            <td>61</td>
-                                            <td>1399/04/25</td>
-                                            <td>320,800 تومان</td>
-                                        </tr>
+                                        {% for grade in object_list %}
+                                            <tr>
+                                                <td>{{ grade.parent }}</td>
+                                                <td>{{ grade.title }}</td>
+                                                <td>{{ grade.grade_student_count }}</td>
+                                                <td>{{ grade.institute }}</td>
+                                                <td>{{ grade.get_course_count }}</td>
+                                                <td>{{ grade.created }}</td>
+                                            </tr>
+                                        {% empty %}
+                                        {% endfor %}
                                         <tr>
                                             <td>پریسا توکلی</td>
                                             <td>حسابدار</td>

@@ -89,6 +89,13 @@ class Grade(models.Model):
         null=True,
         blank=True,
     )
+    institute = models.ForeignKey(
+        Institute,
+        on_delete=models.CASCADE,
+        related_name='grade',
+        null=True,
+        blank=True,
+    )
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -96,6 +103,15 @@ class Grade(models.Model):
 
     def __str__(self):
         return f'{self.parent}-{self.title}'
+
+    def grade_student_count(self):
+        student_count = self.student_set.all().count()
+        return student_count
+
+    def get_course_count(self):
+        pass
+        # course_count = self.institute.courses.filter(grade_id=self.id)
+        # return course_count
 
 
 def create_student(sender, **kwargs):
