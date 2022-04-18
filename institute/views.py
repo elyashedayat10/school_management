@@ -15,7 +15,7 @@ class InstituteListView(ListView):
 
 class InstituteDetailView(DetailView):
     model = Institute
-    template_name = "Institute/"
+    template_name = "Institute/detail.html"
     slug_field = "id"
     slug_url_kwarg = "id"
 
@@ -34,6 +34,9 @@ class InstituteUpdateView(UpdateView):
     slug_url_kwarg = "id"
     template_name = "Institute/update.html"
     success_url = reverse_lazy("institute:list")
+
+    def get_success_url(self):
+        return reverse('institute:detail', args=[self.kwargs.get('id')])
 
 
 class InstituteDeleteView(View):

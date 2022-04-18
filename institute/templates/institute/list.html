@@ -7,14 +7,12 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="page-title">پروفایل</h3>
+                        <h3 class="page-title">لیست آموزشگاه ها</h3>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html"><i
                                             class="mdi mdi-home-outline"></i></a></li>
-                                    <li class="breadcrumb-item" aria-current="page">صفحات</li>
-                                    <li class="breadcrumb-item active" aria-current="page">پروفایل</li>
                                 </ol>
                             </nav>
                         </div>
@@ -36,7 +34,8 @@
                                 <!-- Add the bg color to the header using any of the bg-* classes -->
                                 <div class="widget-user-header bg-black"
                                      style="background: url({{ institute.logo.url }}) center center;">
-                                    <a href="{{ institute.get_absolute_url }}"><h3 class="widget-user-username text-center">{{ institute.name }}</h3></a>
+                                    <a href="{{ institute.get_absolute_url }}"><h3
+                                            class="widget-user-username text-center">{{ institute.name }}</h3></a>
                                 </div>
                                 <div class="widget-user-image">
                                     <img class="rounded-circle" src="{{ institute.logo.url }}" alt="User Avatar">
@@ -45,7 +44,7 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="description-block">
-                                                <h5 class="description-header">12K</h5>
+                                                <h5 class="description-header">{{ institute.master_count }}</h5>
                                                 <span class="description-text">استاد</span>
                                             </div>
                                             <!-- /.description-block -->
@@ -53,7 +52,7 @@
                                         <!-- /.col -->
                                         <div class="col-sm-4 br-1 bl-1">
                                             <div class="description-block">
-                                                <h5 class="description-header">550</h5>
+                                                <h5 class="description-header">{{ institute.student_count }}</h5>
                                                 <span class="description-text"> دانش آموز</span>
                                             </div>
                                             <!-- /.description-block -->
@@ -61,7 +60,7 @@
                                         <!-- /.col -->
                                         <div class="col-sm-4">
                                             <div class="description-block">
-                                                <h5 class="description-header">550</h5>
+                                                <h5 class="description-header">{{ institute.student_count }}</h5>
                                                 <span class="description-text"> دوره</span>
                                             </div>
                                             <!-- /.description-block -->

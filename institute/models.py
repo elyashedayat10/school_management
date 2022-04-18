@@ -1,8 +1,9 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse
-
+from django.db.models import Sum
 from extenstion.utils import get_file_path
+
 
 # Create your models here.
 
@@ -25,5 +26,15 @@ class Institute(models.Model):
         students_number = self.students.all().count()
         return students_number
 
+    def master_count(self):
+        pass
+        # master_count = self.courses.all().distinct('master')
+        # return master_count
+
     def get_absolute_url(self):
         return reverse("institute:detail", args=[self.id])
+
+    def total_earn(self):
+        pass
+        # earn = self.courses.course_all_income()
+        # return earn

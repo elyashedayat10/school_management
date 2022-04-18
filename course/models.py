@@ -92,3 +92,4 @@ class Course(models.Model):
     def course_all_income(self):
         calculation = self.course_student_count() * self.fee
         return calculation
+

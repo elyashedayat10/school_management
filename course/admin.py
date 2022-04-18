@@ -27,6 +27,7 @@ class MasterAdmin(admin.ModelAdmin):
                     "logo",
                     "master",
                     "status",
+                    'institute',
                 )
             },
         ),
