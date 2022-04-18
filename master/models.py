@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse
 
 from extenstion.utils import NATIONAL_CODE_REGEX, get_file_path
-from institute.models import Institute
+
 
 
 # Create your models here.
@@ -34,10 +34,6 @@ class Master(models.Model):
         auto_now=True,
         verbose_name="تاریخ به روز رسانی",
     )
-    institute = models.ManyToManyField(
-        Institute,
-        related_name="masters",
-    )
 
     class Meta:
         verbose_name = "استاد"
@@ -56,5 +52,3 @@ class Master(models.Model):
     def student_count(self):
         pass
 
-    def institute_count(self):
-        return self.institute.all().count()
