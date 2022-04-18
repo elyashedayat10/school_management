@@ -1,13 +1,32 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth import (
+    authenticate,
+    get_user_model,
+    login,
+    logout,
+)
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+    render,
+)
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    UpdateView,
+    View,
+)
+from django.contrib.auth.views import (
+    PasswordChangeView,
+    PasswordChangeDoneView,
+)
 
 from extenstion.mixins import SuperuserMixin
 
-from .forms import AdminCreateForm, AdminUpdateForm, LoginForm
+from .forms import AdminCreateForm, AdminUpdateForm, PassChangeForm
 
 user = get_user_model()
 
@@ -103,3 +122,21 @@ class UserDeleteView(SuperuserMixin, View):
         admin_user.delete()
         messages.success(request, "ادمین مورد نظر با موفقیت حذف شد", "btn btn-success")
         return redirect("account:admin_list")
+
+
+class PassChangeView(PasswordChangeView):
+    template_name = 'account/password_change.html'
+    success_url = reverse_lazy('account:password_change_done')
+    form_class = PassChangeForm
+
+
+class PassChangeDoneView(PasswordChangeDoneView):
+
+    def dispatch(self, request, *args, **kwargs):
+        previous_path = request.META.get('HTTP_REFERER')
+        if previous_path == 'account:change_password':
+            return super(PassChangeDoneView, self).dispatch(request, *args, **kwargs)
+        else:
+            return redirect(request.META.get('HTTP_REFERER'))
+
+    template_name = 'account/password_change_done.html'

@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import PasswordChangeForm
 
 user = get_user_model()
 
@@ -102,3 +103,13 @@ class AdminUpdateForm(forms.ModelForm):
             "phone_number": "شماه تماس",
             "password": "رمز عبور",
         }
+
+
+class PassChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(PassChangeForm, self).__init__(*args, **kwargs)
+        self.fields['old_password'].label = "رمز عبور فعلی"
+        self.fields['new_password1'].label = "رمز عبور جدید "
+        self.fields['new_password2'].label = "تکرار رمز عبور جدید"
+        for fieldname in ["old_password", "new_password1", "new_password2"]:
+            self.fields[fieldname].help_text = None
