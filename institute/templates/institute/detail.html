@@ -10,7 +10,7 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="page-title">پروفایل آموزشگاه  {{ object }}</h3>
+                        <h3 class="page-title">پروفایل آموزشگاه {{ object }}</h3>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
@@ -82,7 +82,7 @@
                         <div class="nav-tabs-custom box-profile">
                             <ul class="nav nav-tabs">
                                 <li><a class="active" href="#usertimeline" data-toggle="tab">دور ه ها</a></li>
-                                <li><a href="#activity" data-toggle="tab">فعالیت</a></li>
+                                <li><a href="#activity" data-toggle="tab">افزودن دوره</a></li>
                                 <li><a href="#settings" data-toggle="tab">تنظیمات</a></li>
                             </ul>
 
@@ -114,6 +114,7 @@
                                                                 <th>تعداد دانش آموز</th>
                                                                 <th>تاریخ شروع</th>
                                                                 <th>تاریخ اتمام</th>
+                                                                <th>جزییات</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -126,6 +127,11 @@
                                                                     <td class="text-center">{{ course.course_student_count }}</td>
                                                                     <td>{{ course.start_time }}</td>
                                                                     <td>{{ course.finish_time }}</td>
+                                                                    <td>
+                                                                        <a class="btn btn-primary"
+                                                                           href="{{ course.get_absolute_url }}">جزییات
+                                                                        </a>
+                                                                    </td>
                                                                 </tr>
                                                             {% empty %}
                                                                 <h2 class="text-center">هیچ دوره ای موجود نمیباشد</h2>
@@ -152,143 +158,26 @@
                                 <div class="tab-pane" id="activity">
 
                                     <div class="box p-15">
-                                        <!-- Post -->
-                                        <div class="post">
-                                            <div class="user-block">
-                                                <img class="img-bordered-sm rounded-circle"
-                                                     src="../images/user1-128x128.jpg" alt="user image">
-                                                <span class="username">
-							  <a href="#">پریسا</a>
-							  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-							</span>
-                                                <span class="description">5 دقیقه قبل</span>
-                                            </div>
-                                            <!-- /.user-block -->
-                                            <div class="activitytimeline">
-                                                <p>
-                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                                                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                                                    نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم
-                                                    متن ساختگی با تولید سادگی
-                                                </p>
-                                                <ul class="list-inline">
-                                                    <li><a href="#" class="link-black text-sm"><i
-                                                            class="fa fa-share margin-r-5"></i> اشتراک گذاری</a></li>
-                                                    <li><a href="#" class="link-black text-sm"><i
-                                                            class="fa fa-thumbs-o-up margin-r-5"></i> پسند</a>
-                                                    </li>
-                                                    <li class="pull-right">
-                                                        <a href="#" class="link-black text-sm"><i
-                                                                class="fa fa-comments-o margin-r-5"></i> دیدگاه
-                                                            (5)</a></li>
-                                                </ul>
-                                                <form class="form-element">
-                                                    <input class="form-control input-sm" type="text"
-                                                           placeholder="یک دیدگاه بنویسید">
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- /.post -->
+                                        <div class="box-body">
 
-                                        <!-- Post -->
-                                        <div class="post">
-                                            <div class="user-block">
-                                                <img class="img-bordered-sm rounded-circle"
-                                                     src="../images/user6-128x128.jpg" alt="user image">
-                                                <span class="username">
-							  <a href="#">فرهاد</a>
-							  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-							</span>
-                                                <span class="description">5 دقیقه قبل</span>
-                                            </div>
-                                            <!-- /.user-block -->
-                                            <div class="activitytimeline">
-                                                <div class="row mb-20">
-                                                    <div class="col-sm-6">
-                                                        <img class="img-fluid" src="../images/photo1.png" alt="Photo">
-                                                    </div>
-                                                    <!-- /.col -->
-                                                    <div class="col-sm-6">
-                                                        <div class="row">
-                                                            <div class="col-sm-6">
-                                                                <img class="img-fluid" src="../images/photo2.png"
-                                                                     alt="Photo">
-                                                                <br><br>
-                                                                <img class="img-fluid" src="../images/photo3.jpg"
-                                                                     alt="Photo">
-                                                            </div>
-                                                            <!-- /.col -->
-                                                            <div class="col-sm-6">
-                                                                <img class="img-fluid" src="../images/photo4.jpg"
-                                                                     alt="Photo">
-                                                                <br><br>
-                                                                <img class="img-fluid" src="../images/photo1.png"
-                                                                     alt="Photo">
-                                                            </div>
-                                                            <!-- /.col -->
-                                                        </div>
-                                                        <!-- /.row -->
-                                                    </div>
-                                                    <!-- /.col -->
+                                            <form method="post" action="" enctype="multipart/form-data">
+                                                {{ form.media }}
+                                                {% csrf_token %}
+                                                <div class="form-group row">
+                                                    {% for field in form.visible_fields %}
+                                                        <label class="col-form-label col-md-2">{{ field.label }}</label>
+                                                        {{ field|add_class:'form-control' }}
+                                                        {% for error in field.errors %}
+                                                            <span class="help-block">{{ error }}</span>
+                                                        {% endfor %}
+                                                    {% endfor %}
                                                 </div>
-                                                <!-- /.row -->
+                                                <input value="افزودن دوره" class="btn-success  form-control "
+                                                       type="submit">
 
-                                                <ul class="list-inline">
-                                                    <li><a href="#" class="link-black text-sm"><i
-                                                            class="fa fa-share margin-r-5"></i> اشتراک گذاری</a></li>
-                                                    <li><a href="#" class="link-black text-sm"><i
-                                                            class="fa fa-thumbs-o-up margin-r-5"></i> پسند</a>
-                                                    </li>
-                                                    <li class="pull-right">
-                                                        <a href="#" class="link-black text-sm"><i
-                                                                class="fa fa-comments-o margin-r-5"></i> دیدگاه
-                                                            (5)</a></li>
-                                                </ul>
-
-                                                <form class="form-element">
-                                                    <input class="form-control input-sm" type="text"
-                                                           placeholder="یک دیدگاه بنویسید">
-                                                </form>
-                                            </div>
+                                            </form>
                                         </div>
-                                        <!-- /.post -->
 
-                                        <!-- Post -->
-                                        <div class="post clearfix">
-                                            <div class="user-block">
-                                                <img class="img-bordered-sm rounded-circle"
-                                                     src="../images/user7-128x128.jpg" alt="user image">
-                                                <span class="username">
-							  <a href="#">ساناز</a>
-							  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
-							</span>
-                                                <span class="description">5 دقیقه قبل</span>
-                                            </div>
-                                            <!-- /.user-block -->
-                                            <div class="activitytimeline">
-                                                <p>
-                                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم، لورم ایپسوم متن
-                                                    ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی
-                                                    نامفهوم، لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم
-                                                    متن ساختگی با تولید سادگی
-                                                </p>
-
-                                                <form class="form-horizontal form-element">
-                                                    <div class="form-group row no-gutters">
-                                                        <div class="col-sm-9">
-                                                            <input class="form-control input-sm" placeholder="پاسخ">
-                                                        </div>
-                                                        <div class="col-sm-3">
-                                                            <button type="submit"
-                                                                    class="btn btn-rounded btn-danger pull-right btn-block btn-sm">
-                                                                ارسال
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <!-- /.post -->
                                     </div>
 
                                 </div>

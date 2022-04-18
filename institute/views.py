@@ -1,9 +1,10 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
-
+from django.views.generic.edit import FormMixin
+from django.contrib import messages
 from .forms import InstituteForm
-
+from course.forms import InstituteCourseForm
 # Create your views here.
 from .models import Institute
 
@@ -13,11 +14,36 @@ class InstituteListView(ListView):
     template_name = "Institute/list.html"
 
 
-class InstituteDetailView(DetailView):
+class InstituteDetailView(FormMixin, DetailView):
     model = Institute
     template_name = "Institute/detail.html"
     slug_field = "id"
     slug_url_kwarg = "id"
+    form_class = InstituteCourseForm
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse('institute:detail', args=[self.kwargs.get('id')])
+
+    def form_valid(self, form):
+        new_course = form.save(commit=False)
+        new_course.institute = self.object
+        new_course.save()
+        print('ok' * 90)
+        messages.success(self.request, '', '')
+        return super(InstituteDetailView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        messages.error(self.request, '', '')
+        return super(InstituteDetailView, self).form_invalid(form)
 
 
 class InstituteCreateView(CreateView):

@@ -4,7 +4,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView, V
 
 from extenstion.mixins import AdminUserMixin
 
-from .forms import CourseCreateForm, CourseUpdateForm
+from .forms import CourseCreateForm,CourseUpdateForm
 from .models import Course
 
 # Create your views here.

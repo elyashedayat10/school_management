@@ -28,30 +28,32 @@ class GradeCreateForm(forms.ModelForm):
 
 
 class StudentForm(forms.ModelForm):
-    national_code = forms.CharField(label="کد ملی")
-    first_name = forms.CharField(label="نام")
-    last_name = forms.CharField(label="نام خانوادگی")
-    phone_number = forms.CharField(label="شماره تماس")
+    national_code = forms.CharField(label='کد ملی')
+    first_name = forms.CharField(label='نام')
+    last_name = forms.CharField(label='نام خانوادگی')
+    phone_number = forms.CharField(label='شماره تماس')
 
     class Meta:
         model = Student
         fields = (
-            "father_name",
-            "father_phone_number",
-            "mother_phone_numer",
-            "home_number",
-            "grade",
-            "profile",
-            "gender",
+            'father_name',
+            'father_phone_number',
+            'mother_phone_numer',
+            'home_number',
+            'grade',
+            'profile',
+            'gender',
+            'institute',
         )
         labels = {
-            "father_name": "نام پدر",
-            "father_phone_number": "شماره تلفن پدر",
-            "mother_phone_numer": "شماره تلفن مادر",
-            "home_number": "شماره منزل",
-            "grade": "پایه",
-            "profile": "تصویر پروفایل",
-            "gender": "جنسیت",
+            'father_name': 'نام پدر',
+            'father_phone_number': 'شماره تلفن پدر',
+            'mother_phone_numer': 'شماره تلفن مادر',
+            'home_number': 'شماره منزل',
+            'grade': 'پایه',
+            'profile': 'تصویر پروفایل',
+            'gender': 'جنسیت',
+            'institute': 'آموزشگاه'
         }
 
     field_order = [
@@ -59,11 +61,12 @@ class StudentForm(forms.ModelForm):
         'first_name',
         'last_name',
         'phone_number',
-        "father_name",
-        "father_phone_number",
-        "mother_phone_numer",
-        "home_number",
-        "grade",
-        "profile",
-        "gender",
+        'father_name',
+        'father_phone_number',
+        'mother_phone_numer',
+        'home_number',
+        'grade',
+        'institute',
+        'profile',
+        'gender',
     ]
