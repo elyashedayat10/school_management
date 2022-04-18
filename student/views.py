@@ -96,7 +96,7 @@ class GradeListView(ListView):
 class GradeCreateView(CreateView):
     form_class = GradeCreateForm
     template_name = 'student/grade_create.html'
-    success_url = reverse_lazy()
+    success_url = reverse_lazy('Student:grade_list')
 
     def form_valid(self, form):
         messages.success(self.request, 'پایه با موفقیت اضافه شد', 'btn btn-success')
@@ -110,7 +110,7 @@ class GradeCreateView(CreateView):
 class GradeUpdateView(UpdateView):
     form_class = GradeUpdateForm
     template_name = 'student/grade_update.html'
-    success_url = reverse_lazy()
+    success_url = reverse_lazy('Student:grade_list')
     id_field = 'id'
     id_url_kwarg = 'id'
 
@@ -131,4 +131,26 @@ class GradeDeleteView(View):
         return redirect('Student:grade_list')
 
 
+class InstallmentCreateView(View):
+    template_name = ''
+    form_class =''
 
+    def setup(self, request, *args, **kwargs):
+        self.student = student = get_object_or_404(Student, id=self.kwargs.get('student_id'))
+        super(InstallmentCreateView, self).setup(request, *args, **kwargs)
+
+    def get(self, request, student_id):
+        return render(request, self.template_name, {'form': self.form_class})
+
+    def post(self, request, student_id):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            installment_count = self.student.total_pay() // cd['installment']
+            installment_list = []
+            for i in range(cd['count']):
+                installment_list.append(installment(student=self.student, amount=installment_count))
+            installment.objects.bulk_create(installment_list)
+            messages.success(request, 'قسط بندی با موفقیت انجام شد', 'btn btn-success')
+            return redirect('')
+        messages.error(request, 'خطا در انجام عملیات', 'btn btn-danger')

@@ -7,6 +7,7 @@ from extenstion.mixins import AdminUserMixin
 from .forms import MasterForm
 from .models import Master
 
+
 # Create your views here.
 
 
@@ -37,7 +38,7 @@ class MasterUpdateView(AdminUserMixin, UpdateView):
     form_class = MasterForm
 
     def get_success_url(self):
-        return reverse("Master:master_detail", kwargs=[self.object.id])
+        return reverse("Master:Detail", args=[self.kwargs.get('id')])
 
 
 class MasterDeleteView(AdminUserMixin, View):
