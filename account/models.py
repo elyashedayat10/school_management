@@ -53,14 +53,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f"{self.first_name}-{self.last_name}"
 
     def user_count(self):
-        user = self.objects.aggregate(Count("id"))["id__count"]
+        user = self.objects.all().count()
         return user
-
-    def student_count(self):
-        student = self.objects.filter(is_student=True).aggregate(Count("id"))[
-            "id__count"
-        ]
-        return student
 
     @property
     def is_staff(self):
