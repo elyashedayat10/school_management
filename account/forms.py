@@ -47,7 +47,6 @@ class UserChangeForm(forms.ModelForm):
             "first_name",
             "last_name",
             "password",
-            "last_login",
         )
 
 
