@@ -86,23 +86,10 @@ class AdminCreateForm(forms.ModelForm):
         }
 
 
-class AdminUpdateForm(forms.ModelForm):
-    class Meta:
-        model = user
-        fields = (
-            "national_code",
-            "first_name",
-            "last_name",
-            "phone_number",
-            "password",
-        )
-        labels = {
-            "national_code": "کد ملی",
-            "first_name": "نام",
-            "last_name": "نام خانوادگی",
-            "phone_number": "شماه تماس",
-            "password": "رمز عبور",
-        }
+class AdminUpdateForm(AdminCreateForm):
+    def __init__(self, *args, **kwargs):
+        super(AdminUpdateForm, self).__init__(*args, **kwargs)
+        self.fields.pop('password')
 
 
 class PassChangeForm(PasswordChangeForm):
