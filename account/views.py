@@ -71,10 +71,18 @@ class UserLogoutView(LoginRequiredMixin, View):
         return redirect("account:login")
 
 
+from .models import User
+
+
 # admin views
 class AdminListView(ListView):
     queryset = user.objects.filter(is_admin=True)
     template_name = "account/admin_list.html"
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context_data = super(AdminListView, self).get_context_data()
+        context_data['count'] = User.objects.count()
+        return context_data
 
 
 class AdminCreateView(SuperuserMixin, CreateView):

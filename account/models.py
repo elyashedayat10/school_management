@@ -50,10 +50,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "national_code"
 
     def __str__(self):
-        return f"{self.first_name}-{self.last_name}"
+        return f'{self.first_name}-{self.last_name}'
 
     def user_count(self):
-        user = self.objects.all().count()
+        user = User.objects.count()
         return user
 
     @property
