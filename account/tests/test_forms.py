@@ -69,22 +69,6 @@ class TestAdminUpdateForm(TestCase):
         self.assertEqual(len(form.errors), 4)
 
 
-class TestAdminUpdateForm(TestCase):
-    def test_valid_data(self):
-        form = AdminUpdateForm(data={
-            'national_code': '1234567899',
-            'first_name': 'user_test',
-            'last_name': 'user_test',
-            'phone_number': '09101010100',
-        })
-        self.assertTrue(form.is_valid())
-
-    def test_empty_form(self):
-        form = AdminUpdateForm(data={})
-        self.assertFalse(form.is_valid())
-        self.assertEqual(len(form.errors), 4)
-
-
 class TestCreateForm(TestCase):
     def test_valid_data(self):
         form = UserCreateForm(data={

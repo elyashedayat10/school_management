@@ -12,7 +12,7 @@ from .views import (
     PassChangeDoneView,
 )
 
-app_name = 'Account'
+app_name = 'account'
 urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login'),
     path('logout/', UserLogoutView.as_view(), name='logout'),
@@ -25,3 +25,5 @@ urlpatterns = [
     path('password_change_done/', PassChangeDoneView.as_view(), name='password_change_done'),
 
 ]
+
+

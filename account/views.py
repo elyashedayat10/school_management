@@ -35,14 +35,13 @@ user = get_user_model()
 
 
 class UserLoginView(View):
+    template_name = "account/login.html"
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
             return super(UserLoginView, self).dispatch(request, *args, **kwargs)
         else:
             return redirect("config:Panel")
-
-    template_name = "account/login.html"
 
     def get(self, request):
         return render(request, self.template_name)
@@ -51,7 +50,7 @@ class UserLoginView(View):
         user = authenticate(
             request, national_code=request.POST.get('national_code'), password=request.POST.get('password'),
         )
-        if user:
+        if user :
             login(request, user)
             messages.success(
                 request, "با موفقیت وارد حساب خود شدید", "btn btn-success"
@@ -61,7 +60,7 @@ class UserLoginView(View):
             return redirect("Student:detail", id=user.id)
         else:
             messages.error(request, "هیچ کاربری یا این اطلاعات وجود ندارد")
-            return redirect(request.path_info)
+        return render(request, self.template_name)
 
 
 class UserLogoutView(LoginRequiredMixin, View):
@@ -71,21 +70,13 @@ class UserLogoutView(LoginRequiredMixin, View):
         return redirect("account:login")
 
 
-from .models import User
-
-
 # admin views
-class AdminListView(ListView):
+class AdminListView(SuperuserMixin,ListView):
     queryset = user.objects.filter(is_admin=True)
     template_name = "account/admin_list.html"
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context_data = super(AdminListView, self).get_context_data()
-        context_data['count'] = User.objects.count()
-        return context_data
 
-
-class AdminCreateView(SuperuserMixin, CreateView):
+class AdminCreateView(SuperuserMixin,CreateView):
     model = user
     form_class = AdminCreateForm
     template_name = "account/admin_create.html"
