@@ -3,7 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View, FormView
 
 from extenstion.mixins import AdminUserMixin
-
+from .filters import CourseFilter
 from .forms import CourseCreateForm, CourseUpdateForm
 from .models import Course
 from student.models import Student
@@ -13,8 +13,12 @@ from student.models import Student
 
 
 class CourseListView(AdminUserMixin, ListView):
-    model = Course
     template_name = "course/list.html"
+    context_object_name = 'filter'
+
+    def get_queryset(self):
+        course_list = CourseFilter(self.request.GET, queryset=Course.objects.all())
+        return course_list
 
 
 class CourseDetailView(AdminUserMixin, DetailView):

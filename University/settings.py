@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "silk",
     "debug_toolbar",
+    "django_filters",
 
     # local
     "master.apps.MasterConfig",

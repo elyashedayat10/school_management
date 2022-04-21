@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load widget_tweaks %}
 {% block content %}
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -23,9 +24,24 @@
 
             <!-- Main content -->
             <section class="content">
+                {% for field in filter.form.visible_fields %}
+                    <label class="col-form-label col-md-2">{{ field.label }}:</label>
+                    {{ field|add_class:'col-sm-3 btn ' }}
+                    {% for error in field.errors %}
+                        <span class="help-block">{{ error }}</span>
+                    {% endfor %}
 
+                {% endfor %}
+
+        <input type="submit" class="form-element btn btn-success" value="اعمال فیلر" />
+                {#    <form method="get">#}
+                {#        {{ filter.form }}#}
+                {#        <input type="submit" />#}
+                {#    </form>#}
+            <br>
+            <br>
                 <div class="row">
-                    {% for course in object_list %}
+                    {% for course in filter.qs %}
                         <div class="col-12 col-lg-5 col-xl-4">
 
                             <!-- Profile Image -->
