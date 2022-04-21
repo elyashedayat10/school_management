@@ -24,22 +24,20 @@
 
             <!-- Main content -->
             <section class="content">
-                {% for field in filter.form.visible_fields %}
-                    <label class="col-form-label col-md-2">{{ field.label }}:</label>
-                    {{ field|add_class:'col-sm-3 btn ' }}
-                    {% for error in field.errors %}
-                        <span class="help-block">{{ error }}</span>
+                <form method="get" action="">
+                    {% for field in filter.form.visible_fields %}
+                        <label class="col-form-label col-md-2">{{ field.label }}:</label>
+                        {{ field|add_class:'col-sm-3 btn ' }}
+                        {% for error in field.errors %}
+                            <span class="help-block">{{ error }}</span>
+                        {% endfor %}
+
                     {% endfor %}
 
-                {% endfor %}
-
-        <input type="submit" class="form-element btn btn-success" value="اعمال فیلر" />
-                {#    <form method="get">#}
-                {#        {{ filter.form }}#}
-                {#        <input type="submit" />#}
-                {#    </form>#}
-            <br>
-            <br>
+                    <input type="submit" class="form-element btn btn-success" value="اعمال فیلر"/>
+                </form>
+                <br>
+                <br>
                 <div class="row">
                     {% for course in filter.qs %}
                         <div class="col-12 col-lg-5 col-xl-4">
@@ -90,6 +88,8 @@
 
 
                         </div>
+                    {% empty %}
+                        <h1 class="m-auto text-danger">هیچ دوره ای موجود نمیباشد</h1>
                     {% endfor %}
 
                 </div>

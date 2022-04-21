@@ -19,11 +19,9 @@ class GradeForm(forms.ModelForm):
         model = Grade
         fields = (
             'title',
-            'parent',
         )
         labels = {
             'title': 'نام',
-            'parent': 'دسته مادر',
         }
 
 

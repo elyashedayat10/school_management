@@ -75,34 +75,31 @@ class installment(models.Model):
     amount = models.IntegerField()
 
 
-class Grade(models.Model):
+class BaseEducation(models.Model):
     title = models.CharField(
         max_length=125,
     )
     created = models.DateField(
         auto_now_add=True,
     )
-    parent = models.ForeignKey(
-        'self',
-        on_delete=models.CASCADE,
-        related_name='sub_grade',
-        null=True,
-        blank=True,
-    )
-    institute = models.ForeignKey(
+    institute = models.ManyToManyField(
         Institute,
-        on_delete=models.CASCADE,
-        related_name='grade',
-        null=True,
-        blank=True,
+        related_name="%(app_label)s_%(class)s_related",
+        related_query_name='%(app_label)s_%(class)ss'
     )
+
+    class Meta:
+        abstract = True
+
+
+class Grade(BaseEducation):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         return super(Grade, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.parent}-{self.title}'
+        return self.title
 
     def grade_student_count(self):
         student_count = self.student_set.all().only('id').count()
@@ -112,6 +109,12 @@ class Grade(models.Model):
         pass
         # course_count = self.institute.courses.filter(grade_id=self.id)
         # return course_count
+
+
+class Major(BaseEducation):
+
+    def __str__(self):
+        return self.title
 
 
 def create_student(sender, **kwargs):
