@@ -59,7 +59,7 @@ class Student(models.Model):
         return total_paying_estimate
 
     def get_course_count(self):
-        course_count = self.course_set.all().count()
+        course_count = self.course_set.all().only('id').count()
         return course_count
 
 
@@ -105,7 +105,7 @@ class Grade(models.Model):
         return f'{self.parent}-{self.title}'
 
     def grade_student_count(self):
-        student_count = self.student_set.all().count()
+        student_count = self.student_set.all().only('id').count()
         return student_count
 
     def get_course_count(self):

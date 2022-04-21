@@ -88,7 +88,7 @@ class Course(models.Model):
         return reverse('Course:Detail', args=[self.id])
 
     def course_student_count(self):
-        student = self.participation.all().count()
+        student = self.participation.all().only('id').count()
         return student
 
     def course_all_income(self):

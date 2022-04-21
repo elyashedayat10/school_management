@@ -6,6 +6,8 @@ from extenstion.utils import NATIONAL_CODE_REGEX, get_file_path
 
 
 
+
+
 # Create your models here.
 class Master(models.Model):
     first_name = models.CharField(
@@ -45,10 +47,13 @@ class Master(models.Model):
     def get_absolute_url(self):
         return reverse("Master:Detail", args=[self.id])
 
+    # def master_course_count(self):
+    #     course_count = self.courses.count()
+    #     return course_count
+
     def master_course_count(self):
-        course_count = self.courses.count()
+        course_count = self.courses.only('id').count()
         return course_count
 
     def student_count(self):
         pass
-

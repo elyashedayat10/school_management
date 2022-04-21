@@ -21,15 +21,15 @@ class Institute(models.Model):
         return self.name
 
     def course_count(self):
-        course_number = self.courses.all().count()
+        course_number = self.courses.all().only('id').count()
         return course_number
 
     def student_count(self):
-        students_number = self.students.all().count()
+        students_number = self.students.all().only('id').count()
         return students_number
 
     def master_count(self):
-        master_count = Master.objects.filter(courses__institute_id=self.id).count()
+        master_count = Master.objects.filter(courses__institute_id=self.id).only('id').count()
         return master_count
 
     def get_absolute_url(self):
