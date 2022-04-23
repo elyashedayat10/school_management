@@ -8,6 +8,6 @@ class CourseFilter(django_filters.FilterSet):
         fields = [
             "master",
             "status",
-            "grade",
             "institute",
+            "grade",
         ]

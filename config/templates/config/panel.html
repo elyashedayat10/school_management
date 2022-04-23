@@ -1,236 +1,226 @@
 {% extends "base.html" %}
 {% block content %}
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<div class="container-full">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <div class="container-full">
 
-				<!-- Main content -->
-				<section class="content">
-					<div class="row">
-					<div class="col-xl-2 col-6">
-							<div class="box overflow-hidden pull-up hov-rs">
-								<div class="box-body">
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
 
-									<div>
-										<p class="text-mute mt-20 mb-0 font-size-16">کل بازدید کنندگان</p>
-										<h3 class="text-dark mb-0 font-weight-500">{{ see }}</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-2 col-6">
-							<div class="box overflow-hidden pull-up hov-rs">
-								<div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">دانش آموز</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ see }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
 
-									<div>
-										<p class="text-mute mt-20 mb-0 font-size-16">تعداد  هولد شده ها</p>
-										<h3 class="text-dark mb-0 font-weight-500">{{ hold_count }}
-												</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-2 col-6">
-							<div class="box overflow-hidden pull-up hov-rs">
-								<div class="box-body">
-									<div>
-										<p class="text-mute mt-20 mb-0 font-size-16">تعداد درخواست بازدید</p>
-										<h3 class="text-dark mb-0 font-weight-500">{{ visit_count }}</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-2 col-6">
-							<div class="box overflow-hidden pull-up hov-rs">
-								<div class="box-body">
-									<div>
-										<p class="text-mute mt-20 mb-0 font-size-16">بلاک های بازدید شده</p>
-										<h3 class="text-dark mb-0 font-weight-500">{{ visit_count }}</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-2 col-6">
-							<div class="box overflow-hidden pull-up hov-rs">
-								<div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">استاد</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ hold_count }}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">آموزشگاه</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ visit_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">مدیر</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ visit_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
 
-									<div>
-										<p class="text-mute mt-20 mb-0 font-size-16">بلاک های فروخته شده</p>
-										<h3 class="text-dark mb-0 font-weight-500">{{ exportal_count }}</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-2 col-6">
-							<div class="box overflow-hidden pull-up hov-rs">
-								<div class="box-body">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">دوره</p>
+                                    <h3 class="text-dark mb-0 font-weight-500"></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-6">
+                        <div class="box overflow-hidden pull-up hov-rs">
+                            <div class="box-body">
 
-									<div>
-										<p class="text-mute mt-20 mb-0 font-size-16">تعداد درخواست نمونه</p>
-										<h3 class="text-dark mb-0 font-weight-500">{{ nemoneh_count }}</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-				<div class="col-xxxl-7 col-xl-8 col-12">
-							<div class="box">
-								<div class="box-header">
-									<h4 class="box-title mb-0">
-										آمار اخیر
-									</h4>
-								</div>
-								<div class="box-body">
-									<div id="recent_trend"></div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-4 col-8">
+                                <div>
+                                    <p class="text-mute mt-20 mb-0 font-size-16">پایه</p>
+                                    <h3 class="text-dark mb-0 font-weight-500">{{ nemoneh_count }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxxl-7 col-xl-8 col-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h4 class="box-title mb-0">
+                                    آمار اخیر
+                                </h4>
+                            </div>
+                            <div class="box-body">
+                                <div id="recent_trend"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-8">
 
-							<div class="row">
-								<div class="col-lg-12 col-12">
-									<div class="box overflow-hidden">
-										<div class="box-body pb-0">
-											<div>
-												<h2 class="text-dark mb-0 font-weight-500">تولید کل-صادراتی-تعداد</h2><br/>
-												<p class="text-center  font-size-40">{{ tolid_kol_kharegi }}</p>
+                        <div class="row">
+                            <div class="col-lg-12 col-12">
+                                <div class="box overflow-hidden">
+                                    <div class="box-body pb-0">
+                                        <div>
+                                            <h2 class="text-dark mb-0 font-weight-500">تولید کل-صادراتی-تعداد</h2><br/>
+                                            <p class="text-center  font-size-40">{{ tolid_kol_kharegi }}</p>
 
-											</div>
-										</div>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-								<div class="col-lg-12 col-12">
-									<div class="box overflow-hidden">
-										<div class="box-body pb-0">
-											<div>
-												<h2 class="text-dark mb-0 font-weight-500">تولید-کل-داخلی-تن</h2><br/>
-												<p class="text-center  font-size-40">{{ tolid_kol_dakheli }}</p>
-											</div>
-										</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-12">
+                                <div class="box overflow-hidden">
+                                    <div class="box-body pb-0">
+                                        <div>
+                                            <h2 class="text-dark mb-0 font-weight-500">تولید-کل-داخلی-تن</h2><br/>
+                                            <p class="text-center  font-size-40">{{ tolid_kol_dakheli }}</p>
+                                        </div>
+                                    </div>
 
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-8">
-							<div class="box">
-								<div class="box-header">
-									<h4 class="box-title align-items-start flex-column">
-										عملکرد بازار-(ترند 3 ماهه)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="box">
+                            <div class="box-header">
+                                <h4 class="box-title align-items-start flex-column">
+                                    عملکرد بازار-(ترند 3 ماهه)
 
-									</h4>
-								</div>
-								<div class="box-body">
-									<div class="table-responsive">
-										<table class="table">
-											<thead>
-												<tr class="text-uppercase bg-lightest">
-													<th style="min-width: 100px"><p>نام سنگ</p>
-													</th>
-                                                                                                        <th style="min-width: 100px"><p>بازدید</p>
-													</th>
-													<th style="min-width: 100px"><p>هولد</p>
-													</th>
-                                                                                                        <th style="min-width: 100px"><p>بارگیری شده</p>
-                                                                                                        <th style="min-width: 100px"><p></p>
-													</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="pl-0 py-8">
-														<div class="d-flex align-items-center">
+                                </h4>
+                            </div>
+                            <div class="box-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr class="text-uppercase bg-lightest">
+                                            <th style="min-width: 100px"><p>نام سنگ</p>
+                                            </th>
+                                            <th style="min-width: 100px"><p>بازدید</p>
+                                            </th>
+                                            <th style="min-width: 100px"><p>هولد</p>
+                                            </th>
+                                            <th style="min-width: 100px"><p>بارگیری شده</p>
+                                            <th style="min-width: 100px"><p></p>
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td class="pl-0 py-8">
+                                                <div class="d-flex align-items-center">
 
-															<div>
-																<a href="#"
-																	class="text-dark font-weight600 hover-primary mb-1 font-size-16">
-																	</a>
+                                                    <div>
+                                                        <a href="#"
+                                                           class="text-dark font-weight600 hover-primary mb-1 font-size-16">
+                                                        </a>
 
-															</div>
-														</div>
-													</td>
-													<td>
-
-														<span class="text-dark font-weight-600 d-block font-size-16">
-
-														</span>
-													</td>
-													<td>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
 
 														<span class="text-dark font-weight-600 d-block font-size-16">
 
 														</span>
-													</td>
-													<td>
+                                            </td>
+                                            <td>
 
 														<span class="text-dark font-weight-600 d-block font-size-16">
 
 														</span>
-													</td>
+                                            </td>
+                                            <td>
 
-												</tr>
-	<tr>
+														<span class="text-dark font-weight-600 d-block font-size-16">
 
+														</span>
+                                            </td>
 
-
-
-
-
-
-												</tr>
+                                        </tr>
+                                        <tr>
 
 
+                                        </tr>
 
 
+                                        </tr>
 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-8">
 
+                        <div class="row">
+                            <div class="col-lg-12 col-12">
+                                <div class="box overflow-hidden">
+                                    <div class="box-body pb-0">
+                                        <div>
+                                            <h2 class="text-dark mb-0 font-weight-500">بارگیری شده سال جدید</h2><br/>
+                                            <p class="text-center  font-size-40">سلماس : 0</p>
+                                            <p class="text-center  font-size-40">تکاب : 0</p>
+                                            <p class="text-center  font-size-40">مهاباد : 0</p>
+                                            <p class="text-center  font-size-40">آتشکوه: 0</p>
 
-												</tr>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-12">
 
-											</tbody>
-										</table>
-									</div>
-					</div>
-</div>
-</div>
-<div class="col-xl-4 col-8">
+                                    </div>
+                                </div>
 
-							<div class="row">
-								<div class="col-lg-12 col-12">
-									<div class="box overflow-hidden">
-										<div class="box-body pb-0">
-											<div>
-												<h2 class="text-dark mb-0 font-weight-500">بارگیری شده سال جدید</h2><br/>
-												<p class="text-center  font-size-40">سلماس : 0</p>
-<p class="text-center  font-size-40">تکاب : 0</p>
-<p class="text-center  font-size-40">مهاباد : 0</p>
-<p class="text-center  font-size-40">آتشکوه: 0</p>
-
-											</div>
-										</div>
-										<div class="col-lg-6 col-12">
-
-									</div>
-								</div>
-
-					</div>
-  <!-- Extreme responsive configuration -->
-			  <div class="box">
-				<div class="box-header with-border">
-				  <h4 class="box-title">نمودار ستونی گروهی</h4>
-				</div>
-				<div class="box-body">
-				  <div class="chart">
-					<div class="ct-chart-12 h-300"></div>
-				  </div>
-				</div>
-				<!-- /.box-body -->
-			  </div>
-			  <!-- /.box -->
-			</div>
-				</section>
-				<!-- /.content -->
-			</div>
-		</div>
-		<!-- /.content-wrapper -->
+                            </div>
+                            <!-- Extreme responsive configuration -->
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h4 class="box-title">نمودار ستونی گروهی</h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="chart">
+                                        <div class="ct-chart-12 h-300"></div>
+                                    </div>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+            </section>
+            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content-wrapper -->
 {% endblock %}

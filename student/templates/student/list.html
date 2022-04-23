@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -200,7 +201,18 @@
 
                     <div class="col-12">
 
+                        <form method="get" action="">
+                            {% for field in filter.form.visible_fields %}
+                                <label class="col-form-label col-md-2">{{ field.label }}:</label>
+                                {{ field|add_class:'col-sm-3 btn ' }}
+                                {% for error in field.errors %}
+                                    <span class="help-block">{{ error }}</span>
+                                {% endfor %}
 
+                            {% endfor %}
+
+                            <input type="submit" class="form-element btn btn-success" value="اعمال فیلر"/>
+                        </form>
                         <!-- /.box -->
 
                         <div class="box">
@@ -225,7 +237,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {% for student in object_list %}
+                                        {% for student in filter.qs %}
                                             <tr>
                                                 <td>{{ student.user }}</td>
                                                 <td>{{ student.user.national_code }}</td>

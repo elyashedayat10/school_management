@@ -17,14 +17,19 @@ from django.views.generic import (
 from .forms import StudentForm, GradeForm, StudentSelectForm
 from .models import Student, Grade, installment
 from course.models import Course
+from .filters import StudentFilter
 
 user = get_user_model()
 
 
 # Create your views here.
 class StudentListView(ListView):
-    model = Student
     template_name = 'student/list.html'
+    context_object_name = 'filter'
+
+    def get_queryset(self):
+        student_list = StudentFilter(self.request.GET, queryset=Student.objects.all())
+        return student_list
 
 
 class StudentDetailView(DetailView):
