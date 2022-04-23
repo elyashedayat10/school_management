@@ -37,8 +37,10 @@ class PanelView(View):
             'admin_count': user.objects.filter(is_admin=True).values('id').count(),
             'course_count': Course.objects.values('id').count(),
             'grade_count': Grade.objects.values('id').count(),
-            'most_participation_course': Course.objects.aggregate(Max('participation')),
-            'less_participation_course': Course.objects.aggregate(Min('participation')),
+            'most_participation_course': Course.objects.annotate(
+                Max('participation')),
+            'less_participation_course': Course.objects.annotate(
+                Min('participation')),
         }
         return render(request, 'config/panel.html', context)
 
