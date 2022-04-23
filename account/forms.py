@@ -1,15 +1,21 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import (PasswordChangeForm,
+                                       ReadOnlyPasswordHashField)
 from django.core.exceptions import ValidationError
-from django.contrib.auth.forms import PasswordChangeForm
 
 user = get_user_model()
 
 
 class UserCreateForm(forms.ModelForm):
-    password1 = forms.CharField(label="password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="confirm password", widget=forms.PasswordInput)
+    password1 = forms.CharField(
+        label="password",
+        widget=forms.PasswordInput,
+    )
+    password2 = forms.CharField(
+        label="confirm password",
+        widget=forms.PasswordInput,
+    )
 
     class Meta:
         model = user

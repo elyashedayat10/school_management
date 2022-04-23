@@ -188,9 +188,9 @@
                                     <div class="col-md-12 col-12 m-auto">
                                         <div class="box">
                                             <div class="box-header with-border">
-                                                <h4 class="box-title">امور مالی</h4>
+                                                <h2>مجموع درآمد آموزشگاه:{{ object.total_earn }}</h2>
                                             </div>
-                                            {{ object.total_earn }}
+                                            <h2>گزارش درآمد</h2>
                                             <div class="box-body">
                                                 {% for course in object.courses.all %}
                                                     <h3>{{ course.title }}-{{ course.course_all_income }}</h3>
@@ -199,8 +199,6 @@
                                                 {% endfor %}
                                             </div>
                                             <div class="box-footer text-right">
-{#                                                <button class="btn btn-rounded btn-primary">تایید</button>#}
-{#                                                <button class="btn btn-rounded btn-secondary">لغو</button>#}
                                             </div>
                                         </div>
                                     </div>

@@ -1,13 +1,8 @@
-from django.test import TestCase, Client
-from django.urls import reverse
-from ..forms import (
-    LoginForm,
-    AdminCreateForm,
-    AdminUpdateForm,
-    PassChangeForm,
-)
-
 from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
+from django.urls import reverse
+
+from ..forms import AdminCreateForm, AdminUpdateForm, LoginForm, PassChangeForm
 
 user = get_user_model()
 
@@ -25,7 +20,6 @@ class TestLoginView(TestCase):
         user_obj.is_admin = True
         user_obj.is_superuser = True
         user_obj.save()
-
 
     def test_user_login_GET(self):
         response = self.client.get(reverse('account:login'))
@@ -49,7 +43,7 @@ class TestLoginView(TestCase):
 
 class TestLogoutView(TestCase):
     def setUp(self):
-        user_obj=user(
+        user_obj = user(
             national_code='1234567899',
             first_name='nil',
             last_name='sam',

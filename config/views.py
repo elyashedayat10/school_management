@@ -1,23 +1,46 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import (
-    TemplateView,
-    CreateView,
-    UpdateView,
-
-)
-from django.http import Http404
-from django.urls import reverse_lazy
-from .forms import SiteSettingForm
-from .models import SiteSetting, IPAddress
 from django.contrib import messages
+from django.http import Http404
+from django.db.models import Max, Min
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    View,
+    UpdateView,
+)
+
 from extenstion.mixins import SuperuserMixin
+
+from .forms import SiteSettingForm
+from .models import IPAddress, SiteSetting
+from student.models import (
+    Student,
+    Grade,
+)
+from master.models import Master
+from institute.models import Institute
+from django.contrib.auth import get_user_model
+from course.models import Course
+
+user = get_user_model()
 
 
 # Create your views here.
 
 
-class PanelView(TemplateView):
-    template_name = "config/panel.html"
+class PanelView(View):
+    def get(self, request):
+        context = {
+            'student_count': Student.objects.values('id').count(),
+            'master_count': Master.objects.values('id').count(),
+            'institute_count': Institute.objects.values('id').count(),
+            'admin_count': user.objects.filter(is_admin=True).values('id').count(),
+            'course_count': Course.objects.values('id').count(),
+            'grade_count': Grade.objects.values('id').count(),
+            'most_participation_course': Course.objects.aggregate(Max('participation')),
+            'less_participation_course': Course.objects.aggregate(Min('participation')),
+        }
+        return render(request, 'config/panel.html', context)
 
 
 class SiteSettingCreateView(SuperuserMixin, CreateView):

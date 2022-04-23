@@ -1,11 +1,13 @@
+from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
 from django.views.generic.edit import FormMixin
-from django.contrib import messages
-from .forms import InstituteForm
+
 from course.forms import InstituteCourseForm
-# Create your views here.
+
+from .forms import InstituteForm
 from .models import Institute
 
 

@@ -6,12 +6,12 @@ from django.contrib.auth import (
     logout,
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import (
-    get_object_or_404,
-    redirect,
-    render,
+from django.contrib.auth.views import (
+    PasswordChangeDoneView,
+    PasswordChangeView,
 )
-from django.urls import reverse, reverse_lazy
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse_lazy
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -19,14 +19,14 @@ from django.views.generic import (
     UpdateView,
     View,
 )
-from django.contrib.auth.views import (
-    PasswordChangeView,
-    PasswordChangeDoneView,
-)
 
 from extenstion.mixins import SuperuserMixin
 
-from .forms import AdminCreateForm, AdminUpdateForm, PassChangeForm
+from .forms import (
+    AdminCreateForm,
+    AdminUpdateForm,
+    PassChangeForm,
+)
 
 user = get_user_model()
 
@@ -50,7 +50,7 @@ class UserLoginView(View):
         user = authenticate(
             request, national_code=request.POST.get('national_code'), password=request.POST.get('password'),
         )
-        if user :
+        if user:
             login(request, user)
             messages.success(
                 request, "با موفقیت وارد حساب خود شدید", "btn btn-success"
@@ -71,23 +71,26 @@ class UserLogoutView(LoginRequiredMixin, View):
 
 
 # admin views
-class AdminListView(SuperuserMixin,ListView):
+class AdminListView(SuperuserMixin, ListView):
     queryset = user.objects.filter(is_admin=True)
     template_name = "account/admin_list.html"
 
 
-class AdminCreateView(SuperuserMixin,CreateView):
+class AdminCreateView(SuperuserMixin, CreateView):
     model = user
     form_class = AdminCreateForm
     template_name = "account/admin_create.html"
     success_url = reverse_lazy("account:admin_list")
 
     def form_valid(self, form):
-        messages.success(self.request, "ادمین با موفقیت اضافه شد", "btn btn-success")
+        new_admin = form.save(commit=False)
+        new_admin.is_admin = True
+        new_admin.save()
+        messages.success(self.request, "ادمین با موفقیت اضافه شد", "info")
         return super(AdminCreateView, self).form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(self.request, "خطا در وزود اطلاعات", "btn btn-danger")
+        messages.error(self.request, "خطا در وزود اطلاعات", "danger")
         return super(AdminCreateView, self).form_invalid(form)
 
 

@@ -1,13 +1,8 @@
-from django.test import SimpleTestCase, TestCase
-from ..forms import (
-    UserCreateForm,
-    UserChangeForm,
-    LoginForm,
-    AdminCreateForm,
-    AdminUpdateForm,
-    PassChangeForm,
-)
 from django.contrib.auth import get_user_model
+from django.test import SimpleTestCase, TestCase
+
+from ..forms import (AdminCreateForm, AdminUpdateForm, LoginForm,
+                     PassChangeForm, UserChangeForm, UserCreateForm)
 
 user = get_user_model()
 

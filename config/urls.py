@@ -1,11 +1,6 @@
 from django.urls import path
 
-from .views import (
-    PanelView,
-    SiteSettingCreateView,
-    SiteSettingUpdateView,
-
-)
+from .views import PanelView, SiteSettingCreateView, SiteSettingUpdateView
 
 app_name = "Config"
 

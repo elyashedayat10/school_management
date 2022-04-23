@@ -1,12 +1,12 @@
 from ckeditor.fields import RichTextField
 from django.db import models
+from django.urls import reverse
 from django_jalali.db import models as jmodels
 
 from extenstion.utils import get_file_path
 from institute.models import Institute
 from master.models import Master
 from student.models import Grade, Student
-from django.urls import reverse
 
 
 # Create your models here.
@@ -75,6 +75,9 @@ class Course(models.Model):
 
     participation = models.ManyToManyField(
         Student,
+    )
+    is_active = models.BooleanField(
+        default=False,
     )
 
     class Meta:

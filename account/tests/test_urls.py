@@ -1,17 +1,9 @@
 from django.test import SimpleTestCase
-from django.urls import reverse, resolve
+from django.urls import resolve, reverse
 
-from ..views import (
-    AdminDetailView,
-    AdminCreateView,
-    AdminUpdateView,
-    AdminListView,
-    UserDeleteView,
-    UserLoginView,
-    UserLogoutView,
-    PassChangeView,
-    PassChangeDoneView,
-)
+from ..views import (AdminCreateView, AdminDetailView, AdminListView,
+                     AdminUpdateView, PassChangeDoneView, PassChangeView,
+                     UserDeleteView, UserLoginView, UserLogoutView)
 
 
 class TestUrls(SimpleTestCase):

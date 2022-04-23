@@ -5,9 +5,6 @@ from django.urls import reverse
 from extenstion.utils import NATIONAL_CODE_REGEX, get_file_path
 
 
-
-
-
 # Create your models here.
 class Master(models.Model):
     first_name = models.CharField(
@@ -47,13 +44,18 @@ class Master(models.Model):
     def get_absolute_url(self):
         return reverse("Master:Detail", args=[self.id])
 
-    # def master_course_count(self):
-    #     course_count = self.courses.count()
-    #     return course_count
-
     def master_course_count(self):
         course_count = self.courses.only('id').count()
         return course_count
 
     def student_count(self):
-        pass
+        total_student = 0
+        for student in self.courses.all():
+            total_student += student.participation.count()
+        return total_student
+
+    def institute_count(self):
+        total_institute = set()
+        for course in self.courses.all():
+            total_institute.add(course.institute.name)
+        return len(total_institute)
