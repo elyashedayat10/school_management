@@ -32,7 +32,7 @@ user = get_user_model()
 # Create your views here.
 
 
-class PanelView(View):
+class PanelView(SuperuserMixin, View):
     def get(self, request):
         context = {
             'student_count': Student.objects.values('id').count(),
@@ -55,7 +55,7 @@ class SiteSettingCreateView(SuperuserMixin, CreateView):
     template_name = 'config/create.html'
     form_class = SiteSettingForm
     model = SiteSetting
-    success_url = reverse_lazy()
+    success_url = reverse_lazy('config:Panel')
 
     def dispatch(self, request, *args, **kwargs):
         ip_address = self.request.user.ip_address
