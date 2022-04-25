@@ -1,8 +1,12 @@
 from django.urls import path
 
-from .views import (InstituteCreateView, InstituteDeleteView,
-                    InstituteDetailView, InstituteListView,
-                    InstituteUpdateView,)
+from .views import (
+    InstituteCreateView,
+    InstituteDeleteView,
+    InstituteDetailView,
+    InstituteListView,
+    InstituteUpdateView,
+)
 
 app_name = "institute"
 

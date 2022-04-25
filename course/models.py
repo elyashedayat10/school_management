@@ -8,7 +8,6 @@ from institute.models import Institute
 from master.models import Master
 from student.models import Grade, Student
 
-
 # Create your models here.
 
 
@@ -46,10 +45,7 @@ class Course(models.Model):
         verbose_name="شهریه",
     )
     status = models.CharField(
-        max_length=15,
-        choices=STATUS,
-        verbose_name="وضعیت دوره",
-        default='شروع نشده'
+        max_length=15, choices=STATUS, verbose_name="وضعیت دوره", default="شروع نشده"
     )
     created = models.DateTimeField(
         auto_now_add=True,
@@ -88,10 +84,10 @@ class Course(models.Model):
         return f"{self.master.last_name}-{self.title}"
 
     def get_absolute_url(self):
-        return reverse('Course:Detail', args=[self.id])
+        return reverse("Course:Detail", args=[self.id])
 
     def course_student_count(self):
-        student = self.participation.all().only('id').count()
+        student = self.participation.all().only("id").count()
         return student
 
     def course_all_income(self):

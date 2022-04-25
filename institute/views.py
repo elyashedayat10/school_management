@@ -1,8 +1,13 @@
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
-                                  View)
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    UpdateView,
+    View,
+)
 from django.views.generic.edit import FormMixin
 
 from course.forms import InstituteCourseForm
@@ -32,19 +37,19 @@ class InstituteDetailView(FormMixin, DetailView):
             return self.form_invalid(form)
 
     def get_success_url(self):
-        return reverse('institute:detail', args=[self.kwargs.get('id')])
+        return reverse("institute:detail", args=[self.kwargs.get("id")])
 
     def form_valid(self, form):
         new_course = form.save(commit=False)
         new_course.institute = self.object
         new_course.save()
-        print('ok' * 90)
-        messages.success(self.request, '', '')
+        print("ok" * 90)
+        messages.success(self.request, "", "")
         return super(InstituteDetailView, self).form_valid(form)
 
     def form_invalid(self, form):
         print(form.errors)
-        messages.error(self.request, '', '')
+        messages.error(self.request, "", "")
         return super(InstituteDetailView, self).form_invalid(form)
 
 
@@ -64,7 +69,7 @@ class InstituteUpdateView(UpdateView):
     success_url = reverse_lazy("institute:list")
 
     def get_success_url(self):
-        return reverse('institute:detail', args=[self.kwargs.get('id')])
+        return reverse("institute:detail", args=[self.kwargs.get("id")])
 
 
 class InstituteDeleteView(View):

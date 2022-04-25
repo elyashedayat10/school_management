@@ -1,8 +1,8 @@
-from django.test import TestCase
-from ..models import SiteSetting
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase
 
+from config.models import SiteSetting
 
 # class TestSiteSetting(TestCase):
 #     def setUp(self):

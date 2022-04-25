@@ -8,23 +8,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('student', '0001_initial'),
+        ("student", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='grade',
-            name='slug',
+            model_name="grade",
+            name="slug",
         ),
         migrations.AddField(
-            model_name='grade',
-            name='created',
-            field=models.DateField(auto_now_add=True, default=django.utils.timezone.now),
+            model_name="grade",
+            name="created",
+            field=models.DateField(
+                auto_now_add=True, default=django.utils.timezone.now
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='grade',
-            name='parent',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='sub_grade', to='student.grade'),
+            model_name="grade",
+            name="parent",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="sub_grade",
+                to="student.grade",
+            ),
         ),
     ]

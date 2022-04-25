@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import (PasswordChangeForm,
-                                       ReadOnlyPasswordHashField)
+from django.contrib.auth.forms import PasswordChangeForm, ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 
 user = get_user_model()
@@ -94,14 +93,14 @@ class AdminCreateForm(forms.ModelForm):
 class AdminUpdateForm(AdminCreateForm):
     def __init__(self, *args, **kwargs):
         super(AdminUpdateForm, self).__init__(*args, **kwargs)
-        self.fields.pop('password')
+        self.fields.pop("password")
 
 
 class PassChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super(PassChangeForm, self).__init__(*args, **kwargs)
-        self.fields['old_password'].label = "رمز عبور فعلی"
-        self.fields['new_password1'].label = "رمز عبور جدید "
-        self.fields['new_password2'].label = "تکرار رمز عبور جدید"
+        self.fields["old_password"].label = "رمز عبور فعلی"
+        self.fields["new_password1"].label = "رمز عبور جدید "
+        self.fields["new_password2"].label = "تکرار رمز عبور جدید"
         for fieldname in ["old_password", "new_password1", "new_password2"]:
             self.fields[fieldname].help_text = None

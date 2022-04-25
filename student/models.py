@@ -55,11 +55,11 @@ class Student(models.Model):
         return reverse("Student:detail", args=[self.pk])
 
     def total_pay(self):
-        total_paying_estimate = self.course_set.aggregate(Sum('fee'))['fee__sum']
+        total_paying_estimate = self.course_set.aggregate(Sum("fee"))["fee__sum"]
         return total_paying_estimate
 
     def get_course_count(self):
-        course_count = self.course_set.all().only('id').count()
+        course_count = self.course_set.all().only("id").count()
         return course_count
 
 
@@ -67,7 +67,7 @@ class installment(models.Model):
     student = models.ForeignKey(
         Student,
         on_delete=models.CASCADE,
-        related_name='installment',
+        related_name="installment",
     )
     paid = models.BooleanField(
         default=False,
@@ -94,17 +94,17 @@ class BaseEducation(models.Model):
 
 class Grade(BaseEducation):
     major = models.ManyToManyField(
-        'Major',
+        "Major",
     )
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('Student:grade_detail', args=[self.id])
+        return reverse("Student:grade_detail", args=[self.id])
 
     def grade_student_count(self):
-        student_count = self.student_set.all().values('id').count()
+        student_count = self.student_set.all().values("id").count()
         return student_count
 
     def get_course_count(self):
@@ -114,7 +114,6 @@ class Grade(BaseEducation):
 
 
 class Major(BaseEducation):
-
     def __str__(self):
         return self.title
 

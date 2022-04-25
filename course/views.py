@@ -1,7 +1,13 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import (CreateView, DetailView, FormView, ListView,
-                                  UpdateView, View)
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    FormView,
+    ListView,
+    UpdateView,
+    View,
+)
 
 from extenstion.mixins import AdminUserMixin
 from student.models import Student
@@ -15,7 +21,7 @@ from .models import Course
 
 class CourseListView(AdminUserMixin, ListView):
     template_name = "course/list.html"
-    context_object_name = 'filter'
+    context_object_name = "filter"
 
     def get_queryset(self):
         course_list = CourseFilter(self.request.GET, queryset=Course.objects.all())
@@ -60,4 +66,4 @@ class CourseParticipationAdd(View):
         course = get_object_or_404(Course, id=course_id)
         course.participation.add(student)
         course.save()
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect(request.META.get("HTTP_REFERER", "/"))

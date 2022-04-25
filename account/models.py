@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+
 # Create your models here.
 from django.core.validators import RegexValidator
 from django.db import models
@@ -26,18 +27,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=11,
         validators=[PHONE_NUMBER_REGEX],
     )
-    is_active = models.BooleanField(
-        default=True
-    )
-    is_admin = models.BooleanField(
-        default=False
-    )
-    is_student = models.BooleanField(
-        default=False
-    )
-    created = models.DateField(
-        auto_now_add=True
-    )
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+    is_student = models.BooleanField(default=False)
+    created = models.DateField(auto_now_add=True)
 
     objects = UserManager()
 
@@ -49,10 +42,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "national_code"
 
     def __str__(self):
-        return f'{self.first_name}-{self.last_name}'
+        return f"{self.first_name}-{self.last_name}"
 
     def user_count(self):
-        user = User.objects.only('id').count()
+        user = User.objects.only("id").count()
         return user
 
     @property

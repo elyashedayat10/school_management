@@ -7,10 +7,10 @@ class SiteSettingForm(forms.ModelForm):
     class Meta:
         model = SiteSetting
         fields = [
-            'title',
-            'image',
+            "title",
+            "image",
         ]
         labels = {
-            'title': 'عنوان سایت',
-            'image': 'لوگو سایت',
+            "title": "عنوان سایت",
+            "image": "لوگو سایت",
         }

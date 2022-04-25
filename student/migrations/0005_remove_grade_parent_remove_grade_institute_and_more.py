@@ -6,34 +6,53 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('institute', '0001_initial'),
-        ('student', '0004_grade_institute'),
+        ("institute", "0001_initial"),
+        ("student", "0004_grade_institute"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='grade',
-            name='parent',
+            model_name="grade",
+            name="parent",
         ),
         migrations.RemoveField(
-            model_name='grade',
-            name='institute',
+            model_name="grade",
+            name="institute",
         ),
         migrations.AddField(
-            model_name='grade',
-            name='institute',
-            field=models.ManyToManyField(related_name='%(app_label)s_%(class)s_related', related_query_name='%(app_label)s_%(class)ss', to='institute.institute'),
+            model_name="grade",
+            name="institute",
+            field=models.ManyToManyField(
+                related_name="%(app_label)s_%(class)s_related",
+                related_query_name="%(app_label)s_%(class)ss",
+                to="institute.institute",
+            ),
         ),
         migrations.CreateModel(
-            name='Major',
+            name="Major",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=125)),
-                ('created', models.DateField(auto_now_add=True)),
-                ('institute', models.ManyToManyField(related_name='%(app_label)s_%(class)s_related', related_query_name='%(app_label)s_%(class)ss', to='institute.institute')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=125)),
+                ("created", models.DateField(auto_now_add=True)),
+                (
+                    "institute",
+                    models.ManyToManyField(
+                        related_name="%(app_label)s_%(class)s_related",
+                        related_query_name="%(app_label)s_%(class)ss",
+                        to="institute.institute",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
         ),
     ]

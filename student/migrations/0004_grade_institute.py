@@ -7,14 +7,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('institute', '0001_initial'),
-        ('student', '0003_installment'),
+        ("institute", "0001_initial"),
+        ("student", "0003_installment"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='grade',
-            name='institute',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='grade', to='institute.institute'),
+            model_name="grade",
+            name="institute",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="grade",
+                to="institute.institute",
+            ),
         ),
     ]

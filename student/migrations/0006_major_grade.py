@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('student', '0005_remove_grade_parent_remove_grade_institute_and_more'),
+        ("student", "0005_remove_grade_parent_remove_grade_institute_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='major',
-            name='grade',
-            field=models.ManyToManyField(to='student.grade'),
+            model_name="major",
+            name="grade",
+            field=models.ManyToManyField(to="student.grade"),
         ),
     ]

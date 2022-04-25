@@ -45,7 +45,7 @@ class Master(models.Model):
         return reverse("Master:Detail", args=[self.id])
 
     def master_course_count(self):
-        course_count = self.courses.only('id').count()
+        course_count = self.courses.only("id").count()
         return course_count
 
     def student_count(self):

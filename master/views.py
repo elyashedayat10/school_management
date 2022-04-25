@@ -1,10 +1,5 @@
-from django.shortcuts import (
-    get_object_or_404,
-    redirect, )
-from django.urls import (
-    reverse,
-    reverse_lazy,
-)
+from django.shortcuts import get_object_or_404, redirect
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     CreateView,
     DetailView,
@@ -49,7 +44,7 @@ class MasterUpdateView(AdminUserMixin, UpdateView):
     form_class = MasterForm
 
     def get_success_url(self):
-        return reverse("Master:Detail", args=[self.kwargs.get('id')])
+        return reverse("Master:Detail", args=[self.kwargs.get("id")])
 
 
 class MasterDeleteView(AdminUserMixin, View):
