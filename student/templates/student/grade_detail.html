@@ -85,9 +85,10 @@
                         <div class="nav-tabs-custom box-profile">
                             <ul class="nav nav-tabs">
                                 <li><a class="active" href="#usertimeline" data-toggle="tab">دور ه ها</a></li>
+                                <li><a href="#settings" data-toggle="tab">رشته های دوره</a></li>
                                 <li><a href="#activity" data-toggle="tab">افزودن رشته</a></li>
-                                <li><a href="#settings" data-toggle="tab"></a></li>
                             </ul>
+
 
                             <div class="tab-content">
 
@@ -163,7 +164,7 @@
                                     <div class="box p-15">
                                         <div class="box-body">
 
-                                            <form method="post" action="{% url 'Student:major_create' object.id %}">
+                                            <form method="post" action="">
                                                 {{ form.media }}
                                                 {% csrf_token %}
                                                 <div class="form-group row">
@@ -191,14 +192,18 @@
                                     <div class="col-md-12 col-12 m-auto">
                                         <div class="box">
                                             <div class="box-header with-border">
-                                                <h2>مجموع درآمد پایه:{{ object.total_earn }}</h2>
+                                                <h2>رشته های دوره</h2>
                                             </div>
-                                            <h2>گزارش درآمد</h2>
+                                            <h2></h2>
                                             <div class="box-body">
-                                                {% for course in object.courses.all %}
-                                                    <h3>{{ course.title }}-{{ course.course_all_income }}</h3>
+                                                {% for major in object.major_set.all %}
+                                                    <h3 style="display: inline">{{ major.title }}</h3>
+                                                    <a class="btn btn-warning"
+                                                       href="{% url 'Student:major_update' major.id %}">ویرایش</a>
+                                                    <a class="btn btn-danger"
+                                                       href="{% url 'Student:major_delete' major.id %}">حذف</a>
                                                 {% empty %}
-                                                    <h2 class="tex-center">هیچ گزارشی برای ارایه موجوئ نیست</h2>
+                                                    <h2 class="tex-center">هیچ پایه ای برای این رشته موجود نیست</h2>
                                                 {% endfor %}
                                             </div>
                                             <div class="box-footer text-right">

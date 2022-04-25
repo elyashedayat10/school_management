@@ -82,6 +82,7 @@ class BaseEducation(models.Model):
     created = models.DateField(
         auto_now_add=True,
     )
+
     # institute = models.ManyToManyField(
     #     Institute,
     #     related_name="%(app_label)s_%(class)s_related",
@@ -93,9 +94,6 @@ class BaseEducation(models.Model):
 
 
 class Grade(BaseEducation):
-    major = models.ManyToManyField(
-        "Major",
-    )
 
     def __str__(self):
         return self.title
@@ -114,6 +112,13 @@ class Grade(BaseEducation):
 
 
 class Major(BaseEducation):
+    grade = models.ForeignKey(
+        Grade,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
+
     def __str__(self):
         return self.title
 

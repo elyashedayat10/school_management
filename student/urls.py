@@ -13,6 +13,8 @@ from .views import (
     StudentListView,
     StudentSelectView,
     StudentUpdateView,
+    MajorDeleteView,
+    MajorUpdateView,
 )
 
 app_name = "Student"
@@ -29,5 +31,7 @@ urlpatterns = [
     path("grade_update/<int:id>/", GradeUpdateView.as_view(), name="grade_update"),
     path("grade_detail/<int:id>/", GradeDetailView.as_view(), name="grade_detail"),
     path("select/", StudentSelectView.as_view(), name="select"),
-    path("major_create/<int:id>/", MajorCreateView.as_view(), name="major_create"),
+    # path("major_create/", MajorCreateView.as_view(), name="major_create"),
+    path('major/update/<int:major_id>/', MajorUpdateView.as_view(), name="major_update"),
+    path('major/delete/<int:major_id>/', MajorDeleteView.as_view(), name="major_delete"),
 ]

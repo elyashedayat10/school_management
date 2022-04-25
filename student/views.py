@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
 from django.views.generic.edit import FormMixin
-
+from django.urls import reverse
 from course.models import Course
 
 from .filters import StudentFilter
@@ -93,16 +93,36 @@ class GradeListView(ListView):
     template_name = "student/grade_list.html"
 
 
-class GradeDetailView(DetailView):
+class GradeDetailView(FormMixin, DetailView):
     model = Grade
     template_name = "student/grade_detail.html"
     slug_field = "id"
     slug_url_kwarg = "id"
+    form_class = MajorForm
 
-    def get_context_data(self, **kwargs):
-        context_data = super(GradeDetailView, self).get_context_data(**kwargs)
-        context_data["form"] = MajorForm
-        return context_data
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse("Student:grade_detail", args=[self.kwargs.get("id")])
+
+    def form_valid(self, form):
+        new_major = form.save(commit=False)
+        new_major.grade = self.object
+        new_major.save()
+        print("ok" * 90)
+        messages.success(self.request, "", "")
+        return super(GradeDetailView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        messages.error(self.request, "", "")
+        return super(GradeDetailView, self).form_invalid(form)
 
 
 class MajorCreateView(CreateView):
@@ -201,3 +221,20 @@ class StudentSelectView(View):
         Student.objects.bulk_update(student_list, ["grade"])
         messages.success(request, "به روزرسانی با موفقیت انجام شد", "btn btn-success")
         return redirect("Student:list")
+
+
+class MajorDeleteView(View):
+    def get(self, request, major_id):
+        major_obj = get_object_or_404(Major, id=major_id)
+        major_obj.delete()
+        messages.success(request, '', '')
+        return redirect('Student:list')
+
+
+class MajorUpdateView(UpdateView):
+    model = Major
+    form_class = MajorForm
+    success_url = reverse_lazy('config:Panel')
+    template_name = "student/major_update.html"
+    slug_field = 'id'
+    slug_url_kwarg = 'major_id'
