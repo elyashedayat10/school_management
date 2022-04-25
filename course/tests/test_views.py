@@ -1,4 +1,3 @@
-from django.test import Client
 from django.urls import reverse
 from extenstion.base_test_class import ConfigSetup
 from django.conf import settings
