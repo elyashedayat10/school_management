@@ -73,7 +73,6 @@ class AdminCreateView(ConfigSetup):
             },
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "account/admin_create.html")
         self.failIf(response.context["form"].is_valid())
         self.assertFormError(
             response, "form", field="phone_number", errors=["same as pattern"]
