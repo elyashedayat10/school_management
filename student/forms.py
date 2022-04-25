@@ -1,6 +1,10 @@
 from django import forms
 
-from .models import Grade, Student
+from .models import (
+    Grade,
+    Student,
+    Major,
+)
 
 
 class StudentSelectForm(forms.Form):
@@ -22,6 +26,17 @@ class GradeForm(forms.ModelForm):
         )
         labels = {
             'title': 'نام',
+        }
+
+
+class MajorForm(forms.ModelForm):
+    class Meta:
+        model = Major
+        fields = (
+            'title',
+        )
+        labels = {
+            'title': 'عنوان',
         }
 
 

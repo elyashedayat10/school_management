@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (InstituteCreateView, InstituteDeleteView,
                     InstituteDetailView, InstituteListView,
-                    InstituteUpdateView)
+                    InstituteUpdateView,)
 
 app_name = "institute"
 

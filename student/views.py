@@ -13,7 +13,7 @@ from django.views.generic import (
     UpdateView,
     View,
 )
-
+from django.views.generic.edit import FormMixin
 from course.models import Course
 
 from .filters import StudentFilter
@@ -21,11 +21,13 @@ from .forms import (
     GradeForm,
     StudentForm,
     StudentSelectForm,
+    MajorForm,
 )
 from .models import (
     Grade,
     Student,
     installment,
+    Major,
 )
 
 user = get_user_model()
@@ -110,6 +112,29 @@ class StudentUpdateView(UpdateView):
 class GradeListView(ListView):
     model = Grade
     template_name = 'student/grade_list.html'
+
+
+class GradeDetailView(DetailView):
+    model = Grade
+    template_name = 'student/grade_detail.html'
+    slug_field = 'id'
+    slug_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context_data = super(GradeDetailView, self).get_context_data(**kwargs)
+        context_data['form'] = MajorForm
+        return context_data
+
+
+class MajorCreateView(CreateView):
+    model = Major
+    success_url = reverse_lazy('config:Panel')
+    form_class = MajorForm
+
+    def form_valid(self, form):
+        id_ = self.kwargs.get('id')
+        print(id_)
+        return super(MajorCreateView, self).form_valid(form)
 
 
 class GradeCreateView(CreateView):

@@ -1,176 +1,5 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../images/favicon.ico">
-
-    <title>سانی ادمین - جداول داده ای</title>
-
-    <!-- Vendors Style-->
-    <link rel="stylesheet" href="{% static 'panel/css/vendors_css.css' %}">
-
-    <!-- Style-->
-    <link rel="stylesheet" href="{% static 'panel/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'panel/css/skin_color.css' %}">
-
-</head>
-
-<body class="hold-transition light-skin sidebar-mini theme-primary rtl">
-<div class="wrapper">
-
-    <header class="main-header">
-        <!-- Header Navbar -->
-        <nav class="navbar navbar-static-top pl-30">
-            <!-- Sidebar toggle button-->
-            <div>
-                <ul class="nav">
-                    <li class="btn-group nav-item">
-                        <a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon"
-                           data-toggle="push-menu" role="button">
-                            <i class="nav-link-icon mdi mdi-menu"></i>
-                        </a>
-                    </li>
-                    <li class="btn-group nav-item">
-                        <a href="#" data-provide="fullscreen"
-                           class="waves-effect waves-light nav-link rounded svg-bt-icon" title="تمام صفحه">
-                            <i class="nav-link-icon mdi mdi-crop-free"></i>
-                        </a>
-                    </li>
-                    <li class="btn-group nav-item d-none d-xl-inline-block">
-                        <a href="#" class="waves-effect waves-light nav-link rounded svg-bt-icon" title="">
-                            <i class="ti-check-box"></i>
-                        </a>
-                    </li>
-                    <li class="btn-group nav-item d-none d-xl-inline-block">
-                        <a href="calendar.html" class="waves-effect waves-light nav-link rounded svg-bt-icon"
-                           title="">
-                            <i class="ti-calendar"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="navbar-custom-menu r-side">
-                <ul class="nav navbar-nav">
-                    <!-- full Screen -->
-                    <li class="search-bar">
-                        <div class="lookup lookup-circle lookup-right">
-                            <input type="text" name="s">
-                        </div>
-                    </li>
-                    <!-- Notifications -->
-                    <li class="dropdown notifications-menu">
-                        <a href="#" class="waves-effect waves-light rounded dropdown-toggle" data-toggle="dropdown"
-                           title="اعلان ها">
-                            <i class="ti-bell"></i>
-                        </a>
-                        <ul class="dropdown-menu animated bounceIn">
-
-                            <li class="header">
-                                <div class="p-20">
-                                    <div class="flexbox">
-                                        <div>
-                                            <h4 class="mb-0 mt-0">اعلان ها</h4>
-                                        </div>
-                                        <div>
-                                            <a href="#" class="text-danger">پاک کردن همه</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <!-- inner menu: contains the actual data -->
-                                <ul class="menu sm-scrol">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-info"></i> لورم ایپسوم متن ساختگی با تولید
-                                            سادگی
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-warning text-warning"></i> متن ساختگی صنعت چاپ با تولید
-                                            سادگی
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-users text-danger"></i> تولید سادگی نامفهوم با متن
-                                            ساختگی لورم ایپسوم در صنعت چاپ
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-cart text-success"></i> لورم ایپسوم با تولید
-                                            سادگی نامفهوم
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-user text-danger"></i> متن ساختگی با تولید سادگی نامفهوم
-                                            در صنعت چاپ
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-user text-primary"></i> لورم ایپسوم متن ساختگی
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-user text-success"></i> با تولید سادگی نامفهوم در صنعت
-                                            چاپ متن ساختگی
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="#">مشاهده همه</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- User Account-->
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="waves-effect waves-light rounded dropdown-toggle p-0"
-                           data-toggle="dropdown" title="کاربر">
-                            <img src="../images/avatar/1.jpg" alt="">
-                        </a>
-                        <ul class="dropdown-menu animated flipInX">
-                            <li class="user-body">
-                                <a class="dropdown-item" href="#"><i class="ti-user text-muted mr-2"></i>
-                                    پروفایل</a>
-                                <a class="dropdown-item" href="#"><i class="ti-wallet text-muted mr-2"></i> کیف پول
-                                    من</a>
-                                <a class="dropdown-item" href="#"><i class="ti-settings text-muted mr-2"></i>
-                                    تنظیمات</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="ti-lock text-muted mr-2"></i> خروج</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#" data-toggle="control-sidebar" title="تنظیمات" class="waves-effect waves-light">
-                            <i class="ti-settings"></i>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Left side column. contains the logo and sidebar -->
-
-    {% include 'navbar.html' %}
-
+{% extends 'base.html' %}
+{% block content %}
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div class="container-full">
@@ -178,14 +7,13 @@
             <div class="content-header">
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
-                        <h3 class="page-title">لیست دانش آموزان</h3>
+                        <h3 class="page-title">پایه ها</h3>
                         <div class="d-inline-block align-items-center">
                             <nav>
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html"><i
                                             class="mdi mdi-home-outline"></i></a></li>
-
-                                    <li class="breadcrumb-item active" aria-current="page">جداول داده ای</li>
+                                    <li class="breadcrumb-item" aria-current="page">لیست پایه ها</li>
                                 </ol>
                             </nav>
                         </div>
@@ -195,538 +23,69 @@
 
             <!-- Main content -->
             <section class="content">
+
                 <div class="row">
+                    {% for grade in object_list %}
+                        <div class="col-12 col-lg-5 col-xl-4">
 
+                            <!-- Profile Image -->
 
-                    <div class="col-12">
-                        <div class="box">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">جدول داده با ویژگی های کامل</h3>
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="table-responsive">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th>پایه</th>
-                                            <th>رشته</th>
-                                            <th>تعدا دانش آموز</th>
-                                            <th>آموزشگاه</th>
-                                            <th>تعداد دوره</th>
-                                            <th>تاریخ افزودن</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {% for grade in object_list %}
-                                            <tr>
-                                                <td>{{ grade.parent }}</td>
-                                                <td>{{ grade.title }}</td>
-                                                <td>{{ grade.grade_student_count }}</td>
-                                                <td>{{ grade.institute }}</td>
-                                                <td>{{ grade.get_course_count }}</td>
-                                                <td>{{ grade.created }}</td>
-                                            </tr>
-                                        {% empty %}
-                                        {% endfor %}
-                                        <tr>
-                                            <td>پریسا توکلی</td>
-                                            <td>حسابدار</td>
-                                            <td>تبریز</td>
-                                            <td>63</td>
-                                            <td>1399/07/25</td>
-                                            <td>170,750 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>پدرام شریفی</td>
-                                            <td>مدیر فنی</td>
-                                            <td>مشهد</td>
-                                            <td>66</td>
-                                            <td>1397/01/12</td>
-                                            <td>86,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>کیمیا سبحانی</td>
-                                            <td>توسعه دهنده جاوا اسکریپت</td>
-                                            <td>تهران</td>
-                                            <td>22</td>
-                                            <td>1397/03/29</td>
-                                            <td>1,433,800 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>آتنا غفاری</td>
-                                            <td>حسابدار</td>
-                                            <td>تبریز</td>
-                                            <td>33</td>
-                                            <td>1396/11/28</td>
-                                            <td>2,162,700 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>بردیا واسعی</td>
-                                            <td>متخصص سئو</td>
-                                            <td>مازندران</td>
-                                            <td>61</td>
-                                            <td>1397/12/02</td>
-                                            <td>3,372,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>حسن جعفری</td>
-                                            <td>دستیار فروش</td>
-                                            <td>مشهد</td>
-                                            <td>59</td>
-                                            <td>1397/08/06</td>
-                                            <td>3,137,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>رها اعتمادی</td>
-                                            <td>متخصص سئو</td>
-                                            <td>تبریز</td>
-                                            <td>55</td>
-                                            <td>1395/10/14</td>
-                                            <td>2,327,500 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>امین عظیمی</td>
-                                            <td>متخصص جاوا اسکریپت</td>
-                                            <td>مشهد</td>
-                                            <td>39</td>
-                                            <td>1397/09/15</td>
-                                            <td>3,205,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ساناز گوهری</td>
-                                            <td>مهندس نرم افزار</td>
-                                            <td>تهران</td>
-                                            <td>23</td>
-                                            <td>1396/12/13</td>
-                                            <td>4,103,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>داوود غدیری</td>
-                                            <td>مدیر دفتر</td>
-                                            <td>شیراز</td>
-                                            <td>30</td>
-                                            <td>1396/12/19</td>
-                                            <td>1,900,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>کامران شریفی</td>
-                                            <td>مسئول پشتیبانی</td>
-                                            <td>تهران</td>
-                                            <td>22</td>
-                                            <td>1398/03/03</td>
-                                            <td>2,340,800 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>سونیا طاهری</td>
-                                            <td>نویسنده فنی</td>
-                                            <td>مشهد</td>
-                                            <td>36</td>
-                                            <td>1396/10/16</td>
-                                            <td>4,470,550 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>هدیه مریوانی</td>
-                                            <td>دیجیتال مارکتینگ</td>
-                                            <td>شیراز</td>
-                                            <td>43</td>
-                                            <td>1397/12/18</td>
-                                            <td>3,313,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>تینا فیروزی</td>
-                                            <td>نویسنده فنی</td>
-                                            <td>شیراز</td>
-                                            <td>19</td>
-                                            <td>1395/03/17</td>
-                                            <td>2,850,500 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مینا معروفی</td>
-                                            <td>طراح گرافیک</td>
-                                            <td>شیراز</td>
-                                            <td>66</td>
-                                            <td>1397/11/27</td>
-                                            <td>3,198,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>پیمان صبور</td>
-                                            <td>مدیر دفتر</td>
-                                            <td>مازندران</td>
-                                            <td>64</td>
-                                            <td>1395/06/09</td>
-                                            <td>2,750,500 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>امیر علی هوشنگی</td>
-                                            <td>مدیر سیستم</td>
-                                            <td>مازندران</td>
-                                            <td>59</td>
-                                            <td>1397/04/10</td>
-                                            <td>3,275,200 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>بهنام محمدی</td>
-                                            <td>مهندس نرم افزار</td>
-                                            <td>شیراز</td>
-                                            <td>41</td>
-                                            <td>1397/10/13</td>
-                                            <td>4,123,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>امیر شاکری</td>
-                                            <td>مدیر پشتیبانی</td>
-                                            <td>تهران</td>
-                                            <td>35</td>
-                                            <td>1397/09/26</td>
-                                            <td>4,217,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>عباس احمدوند</td>
-                                            <td>مدیر توسعه</td>
-                                            <td>مازندران</td>
-                                            <td>30</td>
-                                            <td>1399/09/03</td>
-                                            <td>2,345,750 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>یلدا غفوری</td>
-                                            <td>متخصص سئو</td>
-                                            <td>مازندران</td>
-                                            <td>40</td>
-                                            <td>1397/06/25</td>
-                                            <td>3,675,250 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>کیمیا علوی</td>
-                                            <td>مسئول بخش پشتیبانی</td>
-                                            <td>مازندران</td>
-                                            <td>21</td>
-                                            <td>1399/12/12</td>
-                                            <td>4,106,250 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>درسا کریمی</td>
-                                            <td>دستیار فروش</td>
-                                            <td>کرمانشاه</td>
-                                            <td>23</td>
-                                            <td>1395/09/20</td>
-                                            <td>1,850,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>آرزو کرمانی</td>
-                                            <td>متخصص سئو</td>
-                                            <td>شیراز</td>
-                                            <td>47</td>
-                                            <td>1397/10/09</td>
-                                            <td>5,120,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>سمیه مقیمی</td>
-                                            <td>توسعه دهنده</td>
-                                            <td>تهران</td>
-                                            <td>42</td>
-                                            <td>1395/12/22</td>
-                                            <td>2,920,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>طاها سبحانی</td>
-                                            <td>نویسنده فنی</td>
-                                            <td>اصفهان</td>
-                                            <td>28</td>
-                                            <td>1395/11/14</td>
-                                            <td>3,355,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>بهروز مشتاق</td>
-                                            <td>مهندس نرم افزار</td>
-                                            <td>مشهد</td>
-                                            <td>28</td>
-                                            <td>1399/06/07</td>
-                                            <td>4,260,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>فریبا گوهری</td>
-                                            <td>متخصص سئو</td>
-                                            <td>مشهد</td>
-                                            <td>48</td>
-                                            <td>1395/03/11</td>
-                                            <td>2,850,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>سعید کاشف</td>
-                                            <td>دیجیتال مارکتینگ</td>
-                                            <td>تبریز</td>
-                                            <td>20</td>
-                                            <td>1399/08/14</td>
-                                            <td>3,163,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>محمد خلیل زاده</td>
-                                            <td>متخصص سئو</td>
-                                            <td>کرمانشاه</td>
-                                            <td>37</td>
-                                            <td>1399/06/02</td>
-                                            <td>1,940,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ستاره امیری</td>
-                                            <td>توسعه دهنده</td>
-                                            <td>شیراز</td>
-                                            <td>53</td>
-                                            <td>1397/10/22</td>
-                                            <td>2,114,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>پریسا حسینی</td>
-                                            <td>نویسنده فنی</td>
-                                            <td>شیراز</td>
-                                            <td>27</td>
-                                            <td>1399/05/07</td>
-                                            <td>3,155,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>حسین مبینی</td>
-                                            <td>مدیر تیم</td>
-                                            <td>مشهد</td>
-                                            <td>22</td>
-                                            <td>1396/10/26</td>
-                                            <td>4,235,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>میترا غلامی</td>
-                                            <td>پشتیبانی ارسال</td>
-                                            <td>تهران</td>
-                                            <td>46</td>
-                                            <td>1399/03/09</td>
-                                            <td>4,324,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مریم نجفی</td>
-                                            <td>طراح گرافیک</td>
-                                            <td>مشهد</td>
-                                            <td>47</td>
-                                            <td>1397/12/09</td>
-                                            <td>2,500,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>همایون شریفی</td>
-                                            <td>مدیر دفتر</td>
-                                            <td>مشهد</td>
-                                            <td>51</td>
-                                            <td>1396/12/16</td>
-                                            <td>3,164,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>کامران واحدی</td>
-                                            <td>حراست</td>
-                                            <td>مشهد</td>
-
-                                            <td>41</td>
-                                            <td>1395/02/12</td>
-                                            <td>3,309,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مبینا علیپور</td>
-                                            <td>مدیر عامل</td>
-                                            <td>مشهد</td>
-                                            <td>62</td>
-                                            <td>1397/02/14</td>
-                                            <td>3,453,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ترانه زهیوی</td>
-                                            <td>مدیر دفتر</td>
-                                            <td>شیراز</td>
-                                            <td>37</td>
-                                            <td>1396/12/11</td>
-                                            <td>3,136,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>هادی رئوفی</td>
-                                            <td>نویسنده</td>
-                                            <td>مازندران</td>
-                                            <td>65</td>
-                                            <td>1396/09/26</td>
-                                            <td>3,645,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>الهه مومنی</td>
-                                            <td>مسئول پشتیبانی</td>
-                                            <td>اصفهان</td>
-                                            <td>64</td>
-                                            <td>1399/02/03</td>
-                                            <td>2,234,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>بردیا کاظمی</td>
-                                            <td>مهندس نرم افزار</td>
-                                            <td>شیراز</td>
-                                            <td>38</td>
-                                            <td>1399/05/03</td>
-                                            <td>2,163,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ستاره قربانی</td>
-                                            <td>مسئول پشتیبانی</td>
-                                            <td>تبریز</td>
-                                            <td>37</td>
-                                            <td>1397/08/19</td>
-                                            <td>2,913,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>تبسم هاشمی</td>
-                                            <td>توسعه دهنده</td>
-                                            <td>مازندران</td>
-                                            <td>61</td>
-                                            <td>1398/08/11</td>
-                                            <td>2,890,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>فرهاد قائمیان</td>
-                                            <td>مسئول پشتیبانی</td>
-                                            <td>مشهد</td>
-                                            <td>47</td>
-                                            <td>1397/07/07</td>
-                                            <td>2,873,500 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ساسان تیموری</td>
-                                            <td>تولید محتوا</td>
-                                            <td>اصفهان</td>
-                                            <td>64</td>
-                                            <td>1397/04/09</td>
-                                            <td>4,138,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>آتنا شکوری</td>
-                                            <td>مهندس نرم افزار</td>
-                                            <td>مازندران</td>
-                                            <td>63</td>
-                                            <td>1395/01/04</td>
-                                            <td>4,215,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>زهره افکاری</td>
-                                            <td>مهندس نرم افزار</td>
-                                            <td>مشهد</td>
-                                            <td>56</td>
-                                            <td>1397/06/01</td>
-                                            <td>4,511,650 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>تینا پاکروان</td>
-                                            <td>متخصص جاوا اسکریپت</td>
-                                            <td>تهران</td>
-                                            <td>43</td>
-                                            <td>1398/02/01</td>
-                                            <td>4,750,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>ساناز پارسا</td>
-                                            <td>دستیار فروش</td>
-                                            <td>مازندران</td>
-                                            <td>46</td>
-                                            <td>1399/12/06</td>
-                                            <td>4,145,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>حسین جلیلی</td>
-                                            <td>نویسنده فنی</td>
-                                            <td>شیراز</td>
-                                            <td>47</td>
-                                            <td>1399/03/21</td>
-                                            <td>1,356,650 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>لیلا طاهری</td>
-                                            <td>مدیر سیستم</td>
-                                            <td>شیراز</td>
-                                            <td>21</td>
-                                            <td>1397/02/27</td>
-                                            <td>1,904,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>جواد سلطانی</td>
-                                            <td>توسعه دهنده</td>
-                                            <td>مشهد</td>
-                                            <td>30</td>
-                                            <td>1395/07/14</td>
-                                            <td>1,860,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>شادی غفاری</td>
-                                            <td>نویسنده فنی</td>
-                                            <td>تهران</td>
-                                            <td>51</td>
-                                            <td>1396/11/13</td>
-                                            <td>2,183,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>مریم صبوری</td>
-                                            <td>متخصص جاوا اسکریپت</td>
-                                            <td>اصفهان</td>
-                                            <td>29</td>
-                                            <td>1399/06/27</td>
-                                            <td>2,183,000 تومان</td>
-                                        </tr>
-                                        <tr>
-                                            <td>دنیا جهانی</td>
-                                            <td>پشتیبانی فروش</td>
-                                            <td>مازندران</td>
-                                            <td>27</td>
-                                            <td>1399/01/25</td>
-                                            <td>3,422,000 تومان</td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th>نام</th>
-                                            <th>موقعیت شغلی</th>
-                                            <th>شهر</th>
-                                            <th>سن</th>
-                                            <th>تاریخ شروع</th>
-                                            <th>حقوق</th>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
+                            <!-- /.box -->
+                            <div class="box box-widget widget-user">
+                                <!-- Add the bg color to the header using any of the bg-* classes -->
+                                <div class="widget-user-header bg-black"
+                                     style="background: url({{ grade.profile_image.url }}) center center;">
+                                    <a href="{{ grade.get_absolute_url }}"><h3
+                                            class="widget-user-username text-center">{{ grade }}</h3></a>
+                                </div>
+                                <div class="widget-user-image">
+                                    <img class="rounded-circle" src="{{ grade.profile_image.url }}" alt="User Avatar">
+                                </div>
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ grade.grade_course_count }}</h5>
+                                                <span class="description-text">آموزشگاه</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4 br-1 bl-1">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ grade.student_count }}</h5>
+                                                <span class="description-text"> دانش آموز</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-4">
+                                            <div class="description-block">
+                                                <h5 class="description-header">{{ grade.grade_course_count }}</h5>
+                                                <span class="description-text"> دوره</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                    </div>
+                                    <!-- /.row -->
                                 </div>
                             </div>
-                            <!-- /.box-body -->
+
+
                         </div>
+                    {% endfor %}
 
-                        <!-- /.box -->
-
-                        <!-- /.box -->
-                    </div>
-                    <!-- /.col -->
                 </div>
                 <!-- /.row -->
+
             </section>
             <!-- /.content -->
-
         </div>
     </div>
     <!-- /.content-wrapper -->
-</div>
-<!-- Control Sidebar -->
-
-<!-- /.control-sidebar -->
-
-<!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
-
-<!-- ./wrapper -->
-
-<!-- Vendor JS -->
-<script src="{% static 'panel/js/vendors.min.js' %}"></script>
-<script src="{% static 'panel/icons/feather-icons/feather.min.js' %}"></script>
-<script src="{% static 'panel/vendor_components/datatable/datatables.min.js' %}"></script>
-<script src="{% static 'panel/js/pages/data-table.js' %}"></script>
-
-<!-- Sunny Admin App -->
-<script src="{% static 'panel/js/template.js' %}"></script>
 
 
-</body>
+    <!-- Control Sidebar -->
 
-</html>
+{% endblock %}

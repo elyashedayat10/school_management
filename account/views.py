@@ -119,9 +119,9 @@ class AdminDetailView(SuperuserMixin, DetailView):
 
 
 class UserDeleteView(SuperuserMixin, View):
-    def get(self, request, admin_id):
-        admin_user = get_object_or_404(user, id=admin_id)
-        admin_user.delete()
+    def get(self, request, user_id):
+        user_obj = get_object_or_404(user, id=user_id)
+        user_obj.delete()
         messages.success(request, "ادمین مورد نظر با موفقیت حذف شد", "btn btn-success")
         return redirect("account:admin_list")
 

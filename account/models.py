@@ -52,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return f'{self.first_name}-{self.last_name}'
 
     def user_count(self):
-        user = User.objects.only('id').oncount()
+        user = User.objects.only('id').count()
         return user
 
     @property

@@ -1,6 +1,10 @@
 from django.contrib import messages
 from django.http import Http404
-from django.db.models import Max, Min
+from django.db.models import (
+    Max,
+    Min,
+    Avg,
+)
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -37,10 +41,12 @@ class PanelView(View):
             'admin_count': user.objects.filter(is_admin=True).values('id').count(),
             'course_count': Course.objects.values('id').count(),
             'grade_count': Grade.objects.values('id').count(),
-            'most_participation_course': Course.objects.annotate(
-                Max('participation')),
+            'average_participation_course': Course.objects.aggregate(
+                result=Avg('participation'))['result'],
             'less_participation_course': Course.objects.annotate(
-                Min('participation')),
+                result=Min('participation'))[0],
+            'most_participation_course': Course.objects.annotate(
+                result=Max('participation'))[0],
         }
         return render(request, 'config/panel.html', context)
 

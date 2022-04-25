@@ -82,27 +82,29 @@ class BaseEducation(models.Model):
     created = models.DateField(
         auto_now_add=True,
     )
-    institute = models.ManyToManyField(
-        Institute,
-        related_name="%(app_label)s_%(class)s_related",
-        related_query_name='%(app_label)s_%(class)ss'
-    )
+    # institute = models.ManyToManyField(
+    #     Institute,
+    #     related_name="%(app_label)s_%(class)s_related",
+    #     related_query_name='%(app_label)s_%(class)ss'
+    # )
 
     class Meta:
         abstract = True
 
 
 class Grade(BaseEducation):
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        return super(Grade, self).save(*args, **kwargs)
+    major = models.ManyToManyField(
+        'Major',
+    )
 
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('Student:grade_detail', args=[self.id])
+
     def grade_student_count(self):
-        student_count = self.student_set.all().only('id').count()
+        student_count = self.student_set.all().values('id').count()
         return student_count
 
     def get_course_count(self):

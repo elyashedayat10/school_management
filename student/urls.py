@@ -11,6 +11,8 @@ from .views import (
     StudentListView,
     StudentSelectView,
     StudentUpdateView,
+    GradeDetailView,
+    MajorCreateView,
 )
 
 app_name = 'Student'
@@ -25,5 +27,7 @@ urlpatterns = [
     path('grade_create/', GradeCreateView.as_view(), name='grade_create'),
     path('grade_delete/<int:id>/', GradeDeleteView.as_view(), name='grade_delete'),
     path('grade_update/<int:id>/', GradeUpdateView.as_view(), name='grade_update'),
+    path('grade_detail/<int:id>/', GradeDetailView.as_view(), name='grade_detail'),
     path('select/', StudentSelectView.as_view(), name='select'),
+    path('major_create/<int:id>/', MajorCreateView.as_view(), name='major_create'),
 ]
