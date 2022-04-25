@@ -1,8 +1,6 @@
-from django.test import client
 from extenstion.base_test_class import ConfigSetup
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
-from ..models import SiteSetting
 from django.conf import settings
 
 
