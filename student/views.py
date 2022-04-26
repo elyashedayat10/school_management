@@ -6,7 +6,7 @@ from django.views.generic import CreateView, DetailView, ListView, UpdateView, V
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
 from course.models import Course
-
+from extenstion.send_sms import send_message
 from .filters import StudentFilter
 from .forms import GradeForm, MajorForm, StudentForm, StudentSelectForm
 from .models import Grade, Major, Student, installment
@@ -205,22 +205,29 @@ class InstallmentCreateView(View):
 
 class StudentSelectView(View):
     form_class = StudentSelectForm
-    template_name = "account/select.html"
+    template_name = "student/select.html"
 
     def get(self, request):
         return render(request, self.template_name, {"form": StudentSelectForm})
 
     def post(self, request):
-        cd = self.form_class(request.POST)
-        student_list = []
-        model_qs = cd["student"]
-        for obj in model_qs:
-            model_obj = Student.objects.get(id=obj.id)
-            model_obj.grade = cd["grade"]
-            student_list.append(model_obj)
-        Student.objects.bulk_update(student_list, ["grade"])
-        messages.success(request, "به روزرسانی با موفقیت انجام شد", "btn btn-success")
-        return redirect("Student:list")
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            student_list = []
+            model_qs = cd["student"]
+            print(cd["student"])
+            for topping in request.POST.getlist('student'):
+                student_list.append(topping)
+            send_message(form.cleaned_data['message'], form.cleaned_data['phone'], )
+            # for obj in model_qs:
+            #     model_obj = Student.objects.get(id=obj.id)
+            #     model_obj.grade = cd["grade"]
+            #     student_list.append(model_obj)
+            # Student.objects.bulk_update(student_list, ["grade"])
+            # messages.success(request, "به روزرسانی با موفقیت انجام شد", "btn btn-success")
+            print(student_list)
+            return redirect("Student:list")
 
 
 class MajorDeleteView(View):

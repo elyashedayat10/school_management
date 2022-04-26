@@ -8,10 +8,11 @@ class StudentSelectForm(forms.Form):
         queryset=Student.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
-    grade = forms.ModelChoiceField(
-        queryset=Grade.objects.all(),
-        widget=forms.CheckboxInput,
-    )
+    text=forms.TextField()
+    # grade = forms.ModelChoiceField(
+    #     queryset=Grade.objects.all(),
+    #     widget=forms.CheckboxInput,
+    # )
 
 
 class GradeForm(forms.ModelForm):
