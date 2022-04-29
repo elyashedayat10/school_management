@@ -12,7 +12,7 @@ from extenstion.send_sms import send_message
 
 from .filters import StudentFilter
 from .forms import (GradeForm, MajorForm, StudentForm, StudentInstallmentForm,
-                    StudentSelectForm)
+                    StudentSelectForm, StudentGradeUpdateForm)
 from .models import Grade, Installment, Major, Student
 
 user = get_user_model()
@@ -224,7 +224,7 @@ class StudentInstallmentUpdateView(View):
         installment = get_object_or_404(Installment, id=installment_id)
         installment.paid = True
         installment.save()
-        messages.success(request,'','success')
+        messages.success(request, '', 'success')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
@@ -270,3 +270,29 @@ class MajorUpdateView(UpdateView):
     template_name = "student/major_update.html"
     slug_field = 'id'
     slug_url_kwarg = 'major_id'
+
+
+class StudentGradeUpdate(View):
+    form_class = StudentGradeUpdateForm
+    template_name = 'student/student_grade_update.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'form': self.form_class})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            former = cd['former']
+            to_grade = cd['to_grade']
+            update_list = []
+            model_qs = Student.objects.filter(grade=former)
+            for obj in model_qs:
+                model_obj = Student.objects.get(id=obj.id)
+                model_obj.grade = to_grade
+                update_list.append(model_obj)
+            Student.objects.bulk_update(update_list, ['grade'])
+            messages.success(request, '', '')
+            return redirect()
+        messages.error()
+        return render(request, self.template_name, {'form': form})

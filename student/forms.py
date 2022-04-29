@@ -4,6 +4,11 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from .models import Grade, Major, Student
 
 
+class StudentGradeUpdateForm(forms.Form):
+    former = forms.ModelChoiceField(queryset=Grade.objects.all())
+    to_grade = forms.ModelChoiceField(queryset=Grade.objects.all())
+
+
 class StudentInstallmentForm(forms.Form):
     count = forms.IntegerField(validators=[MinValueValidator(2), MaxValueValidator(10)],
                                label='نعداد اقساز را انتخاب کنید')
