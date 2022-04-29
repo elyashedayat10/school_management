@@ -1,24 +1,11 @@
 from django.urls import path
 
-from .views import (
-    GradeCreateView,
-    GradeDeleteView,
-    GradeDetailView,
-    GradeListView,
-    GradeUpdateView,
-    MajorCreateView,
-    StudentCreateView,
-    StudentDeleteView,
-    StudentDetailView,
-    StudentListView,
-    StudentSelectView,
-    StudentUpdateView,
-    MajorDeleteView,
-    MajorUpdateView,
-    InstallmentCreateView,
-    StudentInstallmentListView,
-    StudentInstallmentUpdateView,
-)
+from .views import (GradeCreateView, GradeDeleteView, GradeDetailView,
+                    GradeListView, GradeUpdateView, InstallmentCreateView,
+                    MajorCreateView, MajorDeleteView, MajorUpdateView,
+                    StudentCreateView, StudentDeleteView, StudentDetailView,
+                    StudentInstallmentListView, StudentInstallmentUpdateView,
+                    StudentListView, StudentSelectView, StudentUpdateView)
 
 app_name = "Student"
 

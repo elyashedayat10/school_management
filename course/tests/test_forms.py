@@ -1,11 +1,8 @@
-from django.test import SimpleTestCase
-from ..forms import (
-    CourseCreateForm,
-    InstituteCourseForm,
-    CourseUpdateForm,
-)
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import SimpleTestCase
+
+from ..forms import CourseCreateForm, CourseUpdateForm, InstituteCourseForm
 
 
 class TestCourseCreateForm(SimpleTestCase):

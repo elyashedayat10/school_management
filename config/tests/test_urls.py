@@ -1,7 +1,8 @@
 from django.test import SimpleTestCase
 from django.urls import resolve, reverse
 
-from config.views import PanelView, SiteSettingCreateView, SiteSettingUpdateView
+from config.views import (PanelView, SiteSettingCreateView,
+                          SiteSettingUpdateView)
 
 
 class TestUrls(SimpleTestCase):

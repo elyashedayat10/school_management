@@ -1,37 +1,19 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
-from django.shortcuts import (
-    get_object_or_404,
-    redirect,
-    render,
-)
-from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DetailView,
-    ListView,
-    UpdateView,
-    View,
-)
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse, reverse_lazy
+from django.views.generic import (CreateView, DetailView, ListView, UpdateView,
+                                  View)
 from django.views.generic.edit import FormMixin
-from django.urls import reverse
+
 from course.models import Course
 from extenstion.send_sms import send_message
+
 from .filters import StudentFilter
-from .forms import (
-    GradeForm,
-    MajorForm,
-    StudentForm,
-    StudentSelectForm,
-    StudentInstallmentForm,
-)
-from .models import (
-    Grade,
-    Major,
-    Student,
-    Installment,
-)
+from .forms import (GradeForm, MajorForm, StudentForm, StudentInstallmentForm,
+                    StudentSelectForm)
+from .models import Grade, Installment, Major, Student
 
 user = get_user_model()
 

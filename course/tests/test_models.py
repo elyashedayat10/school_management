@@ -1,8 +1,9 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase
+
 from ..models import Course
-from django.conf import settings
 
 
 class TestModel(TestCase):

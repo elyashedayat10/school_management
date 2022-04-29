@@ -1,13 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DetailView,
-    FormView,
-    ListView,
-    UpdateView,
-    View,
-)
+from django.views.generic import (CreateView, DetailView, FormView, ListView,
+                                  UpdateView, View)
 
 from extenstion.mixins import AdminUserMixin
 from student.models import Student

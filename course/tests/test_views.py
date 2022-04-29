@@ -1,7 +1,8 @@
-from django.urls import reverse
-from extenstion.base_test_class import ConfigSetup
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.urls import reverse
+
+from extenstion.base_test_class import ConfigSetup
 
 
 class TestCourseListView(ConfigSetup):

@@ -1,5 +1,6 @@
 from django import forms
-from django.core.validators import MinValueValidator, MaxValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
+
 from .models import Grade, Major, Student
 
 

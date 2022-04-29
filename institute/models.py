@@ -6,7 +6,6 @@ from django.urls import reverse
 from extenstion.utils import get_file_path
 from master.models import Master
 
-
 # Create your models here.
 
 
