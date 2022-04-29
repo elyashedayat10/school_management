@@ -1,6 +1,11 @@
 from django import forms
-
+from django.core.validators import MinValueValidator, MaxValueValidator
 from .models import Grade, Major, Student
+
+
+class StudentInstallmentForm(forms.Form):
+    count = forms.IntegerField(validators=[MinValueValidator(2), MaxValueValidator(10)],
+                               label='نعداد اقساز را انتخاب کنید')
 
 
 class StudentSelectForm(forms.Form):
@@ -8,7 +13,7 @@ class StudentSelectForm(forms.Form):
         queryset=Student.objects.all(),
         widget=forms.CheckboxSelectMultiple,
     )
-    text=forms.TextField()
+    # text=forms.TextField()
     # grade = forms.ModelChoiceField(
     #     queryset=Grade.objects.all(),
     #     widget=forms.CheckboxInput,

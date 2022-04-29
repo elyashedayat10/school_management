@@ -1,15 +1,37 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+    render,
+)
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, View
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    UpdateView,
+    View,
+)
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
 from course.models import Course
 from extenstion.send_sms import send_message
 from .filters import StudentFilter
-from .forms import GradeForm, MajorForm, StudentForm, StudentSelectForm
-from .models import Grade, Major, Student, installment
+from .forms import (
+    GradeForm,
+    MajorForm,
+    StudentForm,
+    StudentSelectForm,
+    StudentInstallmentForm,
+)
+from .models import (
+    Grade,
+    Major,
+    Student,
+    Installment,
+)
 
 user = get_user_model()
 
@@ -177,30 +199,51 @@ class GradeDeleteView(View):
 
 
 class InstallmentCreateView(View):
-    template_name = ""
-    form_class = ""
+    template_name = "student/installment.html"
+    form_class = StudentInstallmentForm
 
     def setup(self, request, *args, **kwargs):
-        self.student = get_object_or_404(Student, id=self.kwargs.get("student_id"))
+        self.student = get_object_or_404(Student, id=kwargs.get('student_id'))
         super(InstallmentCreateView, self).setup(request, *args, **kwargs)
 
     def get(self, request, student_id):
-        return render(request, self.template_name, {"form": self.form_class})
+        return render(request, self.template_name, {"form": self.form_class, 'object': self.student})
 
     def post(self, request, student_id):
         form = self.form_class(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            installment_count = self.student.total_pay() // cd["installment"]
+            installment_count = self.student.total_pay() // cd["count"]
+            print(installment_count)
             installment_list = []
             for i in range(cd["count"]):
                 installment_list.append(
-                    installment(student=self.student, amount=installment_count)
+                    Installment(student=self.student, amount=installment_count)
                 )
-            installment.objects.bulk_create(installment_list)
+                print(installment_list)
+            Installment.objects.bulk_create(installment_list)
             messages.success(request, "قسط بندی با موفقیت انجام شد", "btn btn-success")
-            return redirect("")
+            return redirect("Student:detail", student_id)
         messages.error(request, "خطا در انجام عملیات", "btn btn-danger")
+        return render(request, self.template_name, {"form": self.form_class})
+
+
+class StudentInstallmentListView(ListView):
+    template_name = 'student/student_installment_list.html'
+
+    def get_queryset(self):
+        student = get_object_or_404(Student, id=self.kwargs.get('student_id'))
+        object_list = student.installment.all()
+        return object_list
+
+
+class StudentInstallmentUpdateView(View):
+    def get(self, request, installment_id):
+        installment = get_object_or_404(Installment, id=installment_id)
+        installment.paid = True
+        installment.save()
+        messages.success(request,'','success')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 class StudentSelectView(View):

@@ -63,7 +63,7 @@ class Student(models.Model):
         return course_count
 
 
-class installment(models.Model):
+class Installment(models.Model):
     student = models.ForeignKey(
         Student,
         on_delete=models.CASCADE,

@@ -186,14 +186,20 @@
                                             </div>
                                             {{ object.total_earn }}
                                             <div class="box-body">
-                                                {% for course in object.courses.all %}
-                                                    <h3>{{ course.title }}-{{ course.course_all_income }}</h3>
-                                                {% empty %}
-                                                    <h2 class="tex-center">هیچ گزارشی برای ارایه موجوئ نیست</h2>
-                                                {% endfor %}
+                                                {#                                                شسیبشسی#}
+                                                {#                                                {% for course in object.courses.all %}#}
+                                                <h3>تعداد دوره ها:{{ object.get_course_count }}</h3>
+                                                <h3>تعداد دوره ها:{{ object.total_pay }}</h3>
+                                                <a class="btn btn-primary"
+                                                   href="{% url 'Student:installmentcreateview' object.id %}">قسط
+                                                    بندی</a>
+                                                {#                                                {% empty %}#}
+                                                {#                                                    <h2 class="tex-center">هیچ گزارشی برای ارایه موجوئ نیست</h2>#}
+                                                {#                                                {% endfor %}#}
                                             </div>
                                             <div class="box-footer text-right">
-                                                <button class="btn btn-rounded btn-primary">تایید</button>
+                                                <a href="{% url "Student:student_installment_list" object.id %}"
+                                                   class="btn btn-rounded btn-primary">لیست قسط بندی</a>
                                                 <button class="btn btn-rounded btn-secondary">لغو</button>
                                             </div>
                                         </div>

@@ -15,6 +15,9 @@ from .views import (
     StudentUpdateView,
     MajorDeleteView,
     MajorUpdateView,
+    InstallmentCreateView,
+    StudentInstallmentListView,
+    StudentInstallmentUpdateView,
 )
 
 app_name = "Student"
@@ -34,4 +37,9 @@ urlpatterns = [
     # path("major_create/", MajorCreateView.as_view(), name="major_create"),
     path('major/update/<int:major_id>/', MajorUpdateView.as_view(), name="major_update"),
     path('major/delete/<int:major_id>/', MajorDeleteView.as_view(), name="major_delete"),
+    path('installment_create_view/<int:student_id>/', InstallmentCreateView.as_view(), name='installmentcreateview'),
+    path('student_installment_view/<int:student_id>/', StudentInstallmentListView.as_view(),
+         name='student_installment_list'),
+    path('student_installment_update/<int:installment_id>/', StudentInstallmentUpdateView.as_view(),
+         name='student_insallmet_update')
 ]
