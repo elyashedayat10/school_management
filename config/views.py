@@ -69,7 +69,7 @@ class SiteSettingUpdateView(SuperuserMixin, UpdateView):
     template_name = "config/update.html"
     form_class = SiteSettingForm
     model = SiteSetting
-    success_url = reverse_lazy("config:Panel")
+    success_url = reverse_lazy("config:setting")
     slug_field = "id"
     slug_url_kwarg = "id"
 
@@ -80,3 +80,9 @@ class SiteSettingUpdateView(SuperuserMixin, UpdateView):
     def form_invalid(self, form):
         messages.error(self.request, "", "")
         return super(SiteSettingUpdateView, self).form_invalid(form)
+
+
+class SiteSettingView(View):
+    def get(self, request):
+        site_setting_obj = SiteSetting.objects.first()
+        return render(request, 'config/site_setting.html', {'object': site_setting_obj})

@@ -9,6 +9,7 @@
 # Icon must end with two \r
 Icon
 
+db.sqlite3
 
 # Thumbnails
 ._*
